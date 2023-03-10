@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button mode="ios" class="voltar" color="--ion-background-color:#323131;" routerLink="/tela-principal">
+      <img id="img_voltar" src="assets/imagens/voltar.png" alt="">
+    </ion-button>
+    <img class="logo" src="assets/imagens/logo.png" alt="">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="body" mode="ios"> 
+  <!-- começo da tela cabelo -->
+    <div class="title">
+      <img src="assets\imagens\CorteCabelo.png" alt="">
+      <ion-label>Cabelo</ion-label>
+    </div>
+    
+    <div class="itens" *ngFor="let consulta of Consultas">
+    <ion-item mode="ios" button detail-icon="false" lines="full" class="field" routerLink="/tela-agenda">
+      <ion-label> 
+        <h3>{{consulta.nome}}</h3>
+        <h5>{{consulta.descricao}}</h5>
+      </ion-label>
+      <ion-note slot="end">R${{consulta.valor}}</ion-note>
+    </ion-item>
+  </div>
+  <!-- Final da tela cabelo -->
+    </ion-content>
+    
