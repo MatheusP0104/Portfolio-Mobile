@@ -9,7 +9,7 @@
 
 <!-- Tela do Calendario -->
 <ion-content class="body" mode="ios">
-  <form [formGroup]="agendaForm" (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()">
   <div *ngIf="editMode == 1">
     <div class="title">
         <h3><b>AGENDAMENTO</b></h3>
@@ -17,7 +17,7 @@
     </div>
 
     <div class="calendario">
-      <ion-datetime locale="pt-br" minuteValues="0,30"  (ionChange)="selectedDate = $event.target.value" formControlName="data" hourValues="8,9,10,15,16,17">
+      <ion-datetime display-format="DD/MM/YYYY HH:mm" picker-format="DD/MM/YYYY HH:mm" [(ngModel)]="dataHora" name="dataHora">
         <span slot="time-label">Selecione o Horário:</span>
       </ion-datetime>
       <div class="line"></div>
@@ -27,6 +27,7 @@
       <ion-button color=" --ion-background-color: #fff;" (click)="edit()">Confirmar</ion-button>
     </div>
   </div>
+
 
   <!-- Tela escolhendo cortes/produtos -->
   <div *ngIf="editMode == 2">
@@ -48,20 +49,11 @@
     <label class="lobelid" >#00385</label>
       <ion-list>
         <h1 class="Titonlo">Cabelo</h1>
-        <ion-item>
-          <ion-select [interfaceOptions]="customPopoverOptions" interface="popover" placeholder="Selecione o Cabelo">
-            <ion-select-option value="Corte Undercut">Corte Undercut</ion-select-option>
-            <ion-select-option value="Corte Militar">Corte Militar</ion-select-option>
-            <ion-select-option value="Corte Pompadour">Corte Pompadour</ion-select-option>
-            <ion-select-option value="Corte Mullet Style">Corte Mullet Style</ion-select-option>
-            <ion-select-option value="Corte Desfiado">Corte Desfiado</ion-select-option>
-            <ion-select-option value="Corte Disfarçado">Corte Disfarçado</ion-select-option>
-            <ion-select-option value="Corte Razor Part">Corte Razor Part</ion-select-option>
-            <ion-select-option value="Corte Asa Delta">Corte Asa Delta</ion-select-option>
-            <ion-select-option value="Corte Baixo">Corte Baixo</ion-select-option>
-            <ion-select-option value="Corte Social">Corte Social</ion-select-option>
-          </ion-select>
-        </ion-item>
+          <ion-item>
+            <ion-select placeholder="Selecione o Cabelo">
+              <ion-select-option *ngFor="let consulta of Consultas">{{consulta.nome}}</ion-select-option>
+            </ion-select>
+          </ion-item>
 
         <h1 class="Titonlo">Barba</h1>
         <ion-item>
@@ -148,10 +140,10 @@
       <img class="qrcode" src="assets/imagens/qrcode-pix.png" alt="">
       <h6>00020126450014BR.GOV.BCB.PIX0123studiohaircut@gmail.com5204000053039865802BR5925Studio HairCut BarberShop6012Pouso Alegre62070503***63041D65</h6>
 
-      <ion-button class="finalizar" color=" --ion-background-color: #fff;" type="submit" (click)="edit()">Finalizar Pedido</ion-button>
+      <ion-button class="finalizar" color=" --ion-background-color: #fff;" (click)="edit()">Finalizar Pedido</ion-button>
     </div>
   </div>
-
+</form>
   <!-- Pagamento no local -->
   <div *ngIf="editMode == 4">
     <div class="logoBarber">
@@ -203,6 +195,4 @@
       <H1 class="text">Agendamento <br> Concluído!!!</H1>
     </div>
   </div>
-</form>
-
 </ion-content>

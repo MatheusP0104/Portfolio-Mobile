@@ -11,7 +11,7 @@ import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@io
   templateUrl: './tela-mapa.page.html',
   styleUrls: ['./tela-mapa.page.scss'],
 })
-export class TelaMapaPage implements OnInit {
+export class TelaMapaPage {
   lat: any; 
   long: any;
   accuracy: any;
@@ -21,12 +21,11 @@ export class TelaMapaPage implements OnInit {
   public editMode = false
   teste = 0
 
-  constructor(private geolocation: Geolocation,
-    private nativeGeocoder: NativeGeocoder) { }
-
-  ngOnInit() {
-  }
-
+  constructor(
+    private geolocation: Geolocation,
+    private nativeGeocoder: NativeGeocoder
+  ) { }
+    
   geoInformation() {
     this.geolocation.getCurrentPosition().then((data) => {
       this.lat = data.coords.latitude;

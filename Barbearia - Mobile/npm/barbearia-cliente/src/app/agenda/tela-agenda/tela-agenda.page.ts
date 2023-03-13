@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { Agendamento } from 'src/app/models/agendamento';
 import { Servicos } from 'src/app/models/servicos';
 import { CrudService } from 'src/app/services/crud.service';
 
@@ -11,16 +11,17 @@ import { CrudService } from 'src/app/services/crud.service';
   styleUrls: ['./tela-agenda.page.scss'],
 })
 export class TelaAgendaPage implements OnInit {
-  agendaForm : FormGroup
+  dataHora: string;
+  servico: string;
+  pagamento: string;
   Consultas : Servicos[];
-  selectedDate: string;
-  public editMode = 4
+  public editMode = 1
+  
 
   constructor(
     private service: CrudService,
-    public formBuilder: FormBuilder,
     private alertController: AlertController
-  ) { }
+  ) {}
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -34,23 +35,37 @@ export class TelaAgendaPage implements OnInit {
   }
 
   ngOnInit() {
-    this.agendaForm = this.formBuilder.group({
-      data : ['', Validators.required],
-      horario : ['', Validators.required],
-      servico : ['', Validators.required],
-      pagamento : ['', Validators.required]
+    this.service.getServico().subscribe((res) => {
+      this.Consultas = res.map((t) => {
+        return {
+          id: t.payload.doc.id,
+          ...(t.payload.doc.data() as Servicos)
+        }
+      })
     })
   }
 
   onSubmit(){
-    if (!this.agendaForm.valid) {
-      this.presentAlert()
-    } else {
-      this.service.createAgenda(this.agendaForm.value).then(() => {
-      this.agendaForm.reset();
-      }).catch((err) => console.log(err))
-    }
+    if (this.dataHora) {
+      const agendamento: Agendamento = {
+        data: this.dataHora.substr(0, 10),
+        horario: this.dataHora.substr(11, 5),
+        servico: this.servico,
+        pagamento: '',
+      };
+
+    this.service.createAgenda(agendamento).then(() => {
+      console.log('Agendamento adicionado com sucesso!');
+      this.dataHora = '';
+    })
+    .catch((error) => {
+      console.error('Erro ao adicionar agendamento:', error);
+    });
+  
+    
   }
+}
+  
 
   edit(){
     switch (this.editMode){
@@ -90,9 +105,4 @@ export class TelaAgendaPage implements OnInit {
   tela(){
     this.editMode = 1
   }
-
-  
-
-  
-
 }
