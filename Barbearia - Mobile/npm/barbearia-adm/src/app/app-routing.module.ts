@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'update-todo/:id',
-    loadChildren: () => import('./update-todo/update-todo.module').then( m => m.UpdateTodoPageModule)
+    loadChildren: () => import('./update-cabelo/update-todo.module').then( m => m.UpdateTodoPageModule)
   },
   {
     path: 'list-todo',
@@ -34,7 +34,8 @@ const routes: Routes = [
   {
     path: 'tela-cabelo',
     loadChildren: () => import('./cabelo/tela-cabelo/tela-cabelo.module').then( m => m.TelaCabeloPageModule)
-  },  {
+  },
+  {
     path: 'tela-barba',
     loadChildren: () => import('./barba/tela-barba/tela-barba.module').then( m => m.TelaBarbaPageModule)
   },
@@ -78,6 +79,23 @@ const routes: Routes = [
     path: 'tela-rede-social',
     loadChildren: () => import('./redesSociais/tela-rede-social/tela-rede-social.module').then( m => m.TelaRedeSocialPageModule)
   },
+  {
+    path: 'update-barba/:id',
+    loadChildren: () => import('./update-barba/update-barba/update-barba.module').then( m => m.UpdateBarbaPageModule)
+  },
+  {
+    path: 'update-depilacao/:id',
+    loadChildren: () => import('./update-depilacao/update-depilacao/update-depilacao.module').then( m => m.UpdateDepilacaoPageModule)
+  },
+  {
+    path: 'update-tintura/:id',
+    loadChildren: () => import('./update-tintura/update-tintura/update-tintura.module').then( m => m.UpdateTinturaPageModule)
+  },
+  {
+    path: 'update-hidratacao/:id',
+    loadChildren: () => import('./update-hidratacao/update-hidratacao/update-hidratacao.module').then( m => m.UpdateHidratacaoPageModule)
+  },
+
 
 ];
 

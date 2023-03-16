@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { ActivatedRoute,Router} from '@angular/router';
+import { FormBuilder, FormGroup} from '@angular/forms';
+import { ActivatedRoute} from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Servicos } from 'src/app/models/servicos';
 import { CrudService } from 'src/app/services/crud.service';
@@ -18,13 +18,12 @@ export class TelaCabeloPage implements OnInit {
   constructor(
     private service : CrudService,
     private activateRouter : ActivatedRoute,
-    private router : Router,
     private alerta: AlertController,
     private enviardados: AlertController,
     public formBuilder : FormBuilder
   ) { 
     this.id = this.activateRouter.snapshot.paramMap.get('id')
-    this.service.getIdServicos(this.id).subscribe((data) => {
+    this.service.getIdServicosCabelo(this.id).subscribe((data) => {
       this.editForm = this.formBuilder.group({
         nome: [data['nome']],
         email: [data['email']],
@@ -42,7 +41,7 @@ export class TelaCabeloPage implements OnInit {
       senha: [''],
     });
 
-    this.service.getServico().subscribe((res) => {
+    this.service.getServicoCabelo().subscribe((res) => {
       this.Consultas = res.map((t) => {
         return {
           id: t.payload.doc.id,
@@ -53,13 +52,13 @@ export class TelaCabeloPage implements OnInit {
   }
 
   todoList() {
-    this.service.getServico().subscribe((data) => {
+    this.service.getServicoCabelo().subscribe((data) => {
       console.log(data)
     })
   }
 
   onSubmit() {
-    this.service.updateServico(this.id, this.editForm.value)
+    this.service.updateServicoCabelo(this.id, this.editForm.value)
   }
 
   async enviarDados() {
@@ -116,7 +115,7 @@ export class TelaCabeloPage implements OnInit {
               
             }
             else{
-              this.service.createServico(dados) 
+              this.service.createServicoCabelo(dados) 
               const alertsucess = await this.alerta.create({
                 header: 'Servico Criado =)',
                 message: 'Seu serviço foi criado com sucesso!',

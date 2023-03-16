@@ -39,7 +39,7 @@ export class ListTodoPage implements OnInit {
   remove(id) {
     console.log(id)
     if (window.confirm('Certeza?')) {
-      this.service.deleteServico(id)
+      this.service.deleteServicoCabelo(id)
     }
   }
 

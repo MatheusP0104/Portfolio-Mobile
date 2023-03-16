@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TelaTinturaPageRoutingModule } from './tela-tintura-routing.module';
+import { UpdateTinturaPageRoutingModule } from './update-tintura-routing.module';
 
-import { TelaTinturaPage } from './tela-tintura.page';
+import { UpdateTinturaPage } from './update-tintura.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TelaTinturaPageRoutingModule,
+    UpdateTinturaPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [TelaTinturaPage]
+  declarations: [UpdateTinturaPage]
 })
-export class TelaTinturaPageModule {}
+export class UpdateTinturaPageModule {}

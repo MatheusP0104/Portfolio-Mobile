@@ -4,18 +4,18 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { TelaTinturaPageRoutingModule } from './tela-tintura-routing.module';
+import { UpdateHidratacaoPageRoutingModule } from './update-hidratacao-routing.module';
 
-import { TelaTinturaPage } from './tela-tintura.page';
+import { UpdateHidratacaoPage } from './update-hidratacao.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    TelaTinturaPageRoutingModule,
+    UpdateHidratacaoPageRoutingModule,
     ReactiveFormsModule
   ],
-  declarations: [TelaTinturaPage]
+  declarations: [UpdateHidratacaoPage]
 })
-export class TelaTinturaPageModule {}
+export class UpdateHidratacaoPageModule {}

@@ -1,3 +1,6 @@
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
 <ion-content class="body" mode="ios">
   <div class="container">
   <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
@@ -50,7 +53,6 @@
     <ion-input id="input_senha" formControlName="senha" type="password"></ion-input>
     
     <img src="assets/imagens/olho_aberto.png" alt="olho" id="olho">
-    <ion-checkbox></ion-checkbox>
     
     <div *ngIf="editMode">
       <ion-item color="--ion-background-color:#323131;" lines="none" class="valid_senha" *ngIf="(userForm.get('senha').errors?.required || userForm.get('senha').errors?.minLength(8) || userForm.get('senha').errors?.maxLength(16) && userSignUp.submitted)">

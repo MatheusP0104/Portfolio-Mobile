@@ -11,51 +11,20 @@
 
   <ion-button class="buttonAdd" (click)="enviarDados()" color="--ion-background-color:#323131;">Criar</ion-button>
   
-  <!-- <div> começo da tela Depilação -->
-    <div class="title">
-      <img src="assets\imagens\depilacao.png" alt="">
-      <ion-label>Depilação</ion-label>
-    </div>
-    
-    <div class="itens">
-      <!-- Depilação c/ Cera -->
-    <ion-item mode="ios" button detail-icon="false" lines="full" class="field" routerLink="/tela-agenda">
-      <ion-label> 
-        <h3>Depilação c/ Cera</h3> 
-        <h5>Utiliza cera quente ou fria, <br> desde sua raiz.</h5>
-      </ion-label>
-      <ion-note slot="end">R$15</ion-note>
-      </ion-item>
+  <!-- começo da tela Depilaçõa -->
+  <div class="title">
+    <img src="assets\imagens\depilacao.png" alt="">
+    <ion-label>Depilação</ion-label>
+  </div>
   
-      <!-- Depilação c/ Pinça -->
-      <ion-item mode="ios" button class="field" detail-icon="false" routerLink="/tela-agenda">
-        <ion-label> <h3>Depilação c/ Pinça</h3>
-           <h5>Utiliza a pinça, fio por fio.</h5> 
-        </ion-label>
-        <ion-note slot="end">R$10</ion-note>
-       </ion-item>
-  
-       <!-- Depilação c/ Lâmina -->
-       <ion-item mode="ios" button class="field" detail-icon="false" routerLink="/tela-agenda">
-        <ion-label> <h3>Depilação c/ Lâmina</h3>
-           <h5>Utiliza a lâmina, cortando <br> o pelo em sua base. </h5> 
-        </ion-label>
-        <ion-note slot="end">R$15</ion-note>
-       </ion-item>
-  
-       <!-- Depilação c/ Creme -->
-       <ion-item mode="ios" button class="field" detail-icon="false" routerLink="/tela-agenda">
-        <ion-label> <h3>Depilação c/ Creme</h3>
-           <h5>Utiliza o creme depilatório,<br> derretendo a haste  <br>  do pelo.</h5> 
-        </ion-label>
-        <ion-note slot="end">R$10</ion-note>
-       </ion-item>
-  
-       <!-- Depilação c/ Linha -->
-       <ion-item mode="ios" button class="field" detail-icon="false" routerLink="/tela-agenda">
-        <ion-label> <h3>Depilação c/ Linha </h3>
-           <h5>Utiliza a linha, arrancando<br> o pelo desde a raiz.</h5> 
-        </ion-label>
-        <ion-note slot="end">R$15</ion-note>
-       </ion-item>
+  <div class="itens" *ngFor="let consulta of Consultas">
+   <ion-item mode="ios" button detail-icon="false" lines="full" class="field" [routerLink]="['/update-depilacao/', consulta.id]">
+     <ion-label> 
+       <h3>{{consulta.nome}}</h3>
+       <h5>{{consulta.descricao}}</h5>
+     </ion-label>
+     <ion-note slot="end">R${{consulta.valor}}</ion-note>
+   </ion-item>
+ </div>
+ <!-- Fim da tela Depilação -->
   
