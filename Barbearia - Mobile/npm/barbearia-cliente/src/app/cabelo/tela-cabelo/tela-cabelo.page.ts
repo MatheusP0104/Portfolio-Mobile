@@ -15,7 +15,7 @@ export class TelaCabeloPage implements OnInit {
     private service : CrudService) {  }
 
   ngOnInit() {
-    this.service.getServico().subscribe((res) => {
+    this.service.getServicoCabelo().subscribe((res) => {
       this.Consultas = res.map((t) => {
         return {
           id: t.payload.doc.id,
@@ -24,12 +24,4 @@ export class TelaCabeloPage implements OnInit {
       })
     })
   }
-
-  todoList() {
-    this.service.getServico().subscribe((data) => {
-      console.log(data)
-    })
-  }
-
-
 }

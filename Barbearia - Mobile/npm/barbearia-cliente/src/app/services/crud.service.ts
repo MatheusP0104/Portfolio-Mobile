@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Router } from '@angular/router';
 import { Agendamento } from '../models/agendamento';
-import { Servicos } from '../models/servicos';
 import { Users } from '../models/users';
 
 
@@ -11,8 +9,10 @@ import { Users } from '../models/users';
 })
 export class CrudService {
 
-  constructor(private firebase: AngularFirestore, private route: Router) { }
-  
+  constructor(private firebase: AngularFirestore) { }
+
+  // === Criar ===
+
   // Cria a tabela Users no firebase
   createUser(user: Users) {
     return this.firebase.collection('Users').add(user);
@@ -24,37 +24,72 @@ export class CrudService {
     return this.firebase.collection('Agendamento').add(agenda);
   }
 
- 
-//  Lista todos os dados que estão na tabela Users
+  // === Fim da Função Criar ===
+
+  // =======================================================================
+
+  // === Listagem de tudo que está no banco ===
+
+  //  Lista todos os dados que estão na tabela Users
   getUser() {
     return this.firebase.collection('Users').snapshotChanges();
   }
 
-  //  Lista todos os dados que estão na tabela Serviços
-  getServico() {
-    return this.firebase.collection('Servicos').snapshotChanges();
+  //  Lista todos os dados que estão na tabela Serviços de Cabelo
+  getServicoCabelo() {
+    return this.firebase.collection('Servicos_Cabelos').snapshotChanges();
   }
 
- 
+  //  Lista todos os dados que estão na tabela Serviços de Barba
+  getServicoBarba() {
+    return this.firebase.collection('Servicos_Barba').snapshotChanges();
+  }
+
+  //  Lista todos os dados que estão na tabela Serviços de Depilação
+  getServicoDepilacao() {
+    return this.firebase.collection('Servicos_Depilacao').snapshotChanges();
+  }
+
+  //  Lista todos os dados que estão na tabela Serviços de Tintura
+  getServicoTintura() {
+    return this.firebase.collection('Servicos_Tintura').snapshotChanges();
+  }
+
+  //  Lista todos os dados que estão na tabela Serviços de Hidratação
+  getServicoHidratacao() {
+    return this.firebase.collection('Servicos_Hidratacao').snapshotChanges();
+  }
+
+  // === Fim da listagem de tudo que está no banco ===
+
+  // =======================================================================
+
+  // === Listagem atraves do ID ===
+
+  //  Lista apenas um dado atraves do id da tabela Users 
   getIdUsers(id) {
-    return this.firebase.collection('Admin').doc(String(id)).valueChanges();
+    return this.firebase.collection('Users').doc(String(id)).valueChanges();
   }
 
-  updateServico(id, servico : Servicos) {
-    this.firebase.collection('Servicos').doc(id).update(servico).then(() => {
-      this.route.navigate(['/tela-cabelo']);
-    }).catch((err) => console.log(err))
+  // === Fim da Listagem de ID ===
+
+  // =======================================================================
+
+  // === Atualização ===
+
+  updateUsers(id, user : Users) {
+    this.firebase.collection('Users').doc(id).update(user).then(() => {}).catch((err) => console.log(err))
   }
 
-  updateAdmin(id, admin : Users) {
-    this.firebase.collection('Admin').doc(id).update(admin).then(() => {}).catch((err) => console.log(err))
+  // === Fim da Atualização ===
+
+  // =======================================================================
+
+  // === Deletar ===
+
+  deleteUsers(id: string) {
+    this.firebase.doc('Users/' + id).delete();
   }
 
-  deleteServico(id: string) {
-    this.firebase.doc('Servicos/' + id).delete();
-  }
-
-  deleteAdmin(id: string) {
-    this.firebase.doc('Admin/' + id).delete();
-  }
+  // === Fim da Função Deletar ===
 }

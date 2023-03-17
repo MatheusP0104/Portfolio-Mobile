@@ -35,7 +35,7 @@ export class TelaAgendaPage implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getServico().subscribe((res) => {
+    this.service.getServicoCabelo().subscribe((res) => {
       this.Consultas = res.map((t) => {
         return {
           id: t.payload.doc.id,

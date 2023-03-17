@@ -35,12 +35,5 @@ export class ListTodoPage implements OnInit {
     })
   }
 
-  // Delete
-  remove(id) {
-    console.log(id)
-    if (window.confirm('Certeza?')) {
-      this.service.deleteServico(id)
-    }
-  }
 
 }

@@ -17,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: 'update-todo/:id',
-    loadChildren: () => import('./update-todo/update-todo.module').then( m => m.UpdateTodoPageModule)
+    loadChildren: () => import('./update-user/update-todo.module').then( m => m.UpdateTodoPageModule)
   },
   {
     path: 'list-todo',
@@ -34,7 +34,8 @@ const routes: Routes = [
   {
     path: 'tela-cabelo',
     loadChildren: () => import('./cabelo/tela-cabelo/tela-cabelo.module').then( m => m.TelaCabeloPageModule)
-  },  {
+  },
+  {
     path: 'tela-barba',
     loadChildren: () => import('./barba/tela-barba/tela-barba.module').then( m => m.TelaBarbaPageModule)
   },

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Servicos } from 'src/app/models/servicos';
 import { CrudService } from 'src/app/services/crud.service';
+
+
 
 @Component({
   selector: 'app-tela-cabelo',
@@ -14,6 +16,7 @@ export class TelaCabeloPage implements OnInit {
   Consultas : Servicos[];
   editForm : FormGroup;
   id : any;
+  private holdTimeout: any;
   
   constructor(
     private service : CrudService,
@@ -60,7 +63,7 @@ export class TelaCabeloPage implements OnInit {
   onSubmit() {
     this.service.updateServicoCabelo(this.id, this.editForm.value)
   }
-
+  
   async enviarDados() {
     const alert = await this.enviardados.create({
       header: 'Criar um novo serviço',
@@ -81,7 +84,7 @@ export class TelaCabeloPage implements OnInit {
           min: 1,
         },
       ],
-
+      
       buttons: [
         {
           text: 'Cancelar',
@@ -90,12 +93,12 @@ export class TelaCabeloPage implements OnInit {
         {
           text: 'Criar',
           cssClass: 'alert-button-confirm',
-
+          
           handler: async(dados) =>{
             const nome = dados.nome;
             const descricao = dados.descricao;
             const valor = dados.valor;
-
+            
             if(dados.nome.trim() === '' || dados.descricao.trim() === '' || dados.valor.trim() === ''){
               const alerterror = await this.alerta.create({
                 header: 'Algo deu Errado =(',
@@ -136,8 +139,7 @@ export class TelaCabeloPage implements OnInit {
         },
       ],
     });
-
-    await alert.present();
+    
+    await alert.present();  
   }
-
 }

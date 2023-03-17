@@ -49,12 +49,7 @@ export class TelaPerfilPage implements OnInit {
       console.log(data)
     })
   }
-
-   // Delete
-   remove(id) {
-      this.service.deleteAdmin(id)
-  }
-
+  
   edit(){
     switch (this.editMode){
       case false:
@@ -82,7 +77,7 @@ export class TelaPerfilPage implements OnInit {
   }
 
   onSubmit() {
-    this.service.updateAdmin(this.id, this.editForm.value)
+    this.service.updateUsers(this.id, this.editForm.value)
   }
 
 }
