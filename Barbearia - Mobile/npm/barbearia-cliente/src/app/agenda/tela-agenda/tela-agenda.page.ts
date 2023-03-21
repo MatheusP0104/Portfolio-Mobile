@@ -12,9 +12,21 @@ import { CrudService } from 'src/app/services/crud.service';
 })
 export class TelaAgendaPage implements OnInit {
   dataHora: string;
-  servico: string;
+  servicoCabelo: string;
+  servicoBarba: string;
+  servicoTintura: string;
+  servicoDepilacao: string;
+  servicoHidratacao: string;
+  nenhumCabelo: boolean  = false
   pagamento: string;
-  Consultas : Servicos[];
+  mensagem: string;
+  saida: string;
+
+  ConsultasCabelo : Servicos[];
+  ConsultasBarba : Servicos[];
+  ConsultasTintura : Servicos[];
+  ConsultasDepilacao : Servicos[];
+  ConsultasHidratacao : Servicos[];
   public editMode = 1
   
 
@@ -26,8 +38,8 @@ export class TelaAgendaPage implements OnInit {
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Alerta!',
-      subHeader: 'Algo deu errado =(',
-      message: 'Por Favor, preencha todos os campos corretamente.',
+      subHeader: this.mensagem,
+      message: this.saida,
       buttons: ['Voltar'],
     });
 
@@ -35,34 +47,78 @@ export class TelaAgendaPage implements OnInit {
   }
 
   ngOnInit() {
+    // Consulta do Cabelo
     this.service.getServicoCabelo().subscribe((res) => {
-      this.Consultas = res.map((t) => {
+      this.ConsultasCabelo = res.map((t) => {
         return {
           id: t.payload.doc.id,
           ...(t.payload.doc.data() as Servicos)
         }
       })
     })
-  }
 
+    // Consulta da Barba
+    this.service.getServicoBarba().subscribe((res) => {
+      this.ConsultasBarba = res.map((t) => {
+        return {
+          id: t.payload.doc.id,
+          ...(t.payload.doc.data() as Servicos)
+        }
+      })
+    })
+
+      // Consulta da Tintura
+      this.service.getServicoTintura().subscribe((res) => {
+        this.ConsultasTintura = res.map((t) => {
+          return {
+            id: t.payload.doc.id,
+            ...(t.payload.doc.data() as Servicos)
+          }
+        })
+      })
+
+      // Consulta da Depilacao
+    this.service.getServicoDepilacao().subscribe((res) => {
+      this.ConsultasDepilacao = res.map((t) => {
+        return {
+          id: t.payload.doc.id,
+          ...(t.payload.doc.data() as Servicos)
+        }
+      })
+    })
+
+
+      // Consulta da Hidratacao
+      this.service.getServicoHidratacao().subscribe((res) => {
+        this.ConsultasHidratacao = res.map((t) => {
+          return {
+            id: t.payload.doc.id,
+            ...(t.payload.doc.data() as Servicos)
+          }
+        })
+      })
+  }
   onSubmit(){
-    if (this.dataHora) {
+    if (this.dataHora){
       const agendamento: Agendamento = {
         data: this.dataHora.substr(0, 10),
         horario: this.dataHora.substr(11, 5),
-        servico: this.servico,
-        pagamento: '',
+        servicoCabelo: this.servicoCabelo.substr(0, 20),
+        servicoBarba: this.servicoBarba.substr(0, 20),
+        servicoTintura: this.servicoTintura.substr(0, 20),
+        servicoDepilacao: this.servicoDepilacao.substr(0, 20),
+        servicoHidratacao: this.servicoHidratacao.substr(0, 20),
+        pagamento: this.pagamento.substr(0, 10),
       };
 
     this.service.createAgenda(agendamento).then(() => {
-      console.log('Agendamento adicionado com sucesso!');
+      this.mensagem = 'Agendamendo Realizado com sucesso!'
+      this.saida = 'Seu agendamento foi confirmado com Exito'
+      this.presentAlert();
       this.dataHora = '';
+      this.servicoCabelo = '';
+      this.servicoBarba = '';
     })
-    .catch((error) => {
-      console.error('Erro ao adicionar agendamento:', error);
-    });
-  
-    
   }
 }
   
