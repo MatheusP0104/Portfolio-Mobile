@@ -6,10 +6,6 @@ export class Agendamento {
     servicoTintura : string;
     servicoDepilacao : string;
     servicoHidratacao : string;
-    // nenhumCabelo : string;
-    // nenhumBarba : string;
-    // nenhumTintura : string;
-    // nenhumDepilacao : string;
-    // nenhumHidratacao : string;
     pagamento : string;
+    nomeUser : string
 }

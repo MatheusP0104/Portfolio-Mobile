@@ -37,12 +37,11 @@
       <div class="line"></div>
     </div>
     
-    <ion-item>
+    <ion-item *ngFor="let consulta of ConsultasUser" [(ngModel)]="nomeUser" name="nomeUser">
       <ion-avatar slot="start">
         <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
       </ion-avatar>
-      <ion-label>Lucas Carvalho De Souza</ion-label>
-      
+      <ion-label>{{consulta.nome}}</ion-label>
     </ion-item>
     <label class="lobelid" >#00385</label>
     <ion-list>
@@ -83,18 +82,18 @@
               <ion-select-option *ngFor="let consulta of ConsultasHidratacao">{{consulta.nome}}</ion-select-option>
             </ion-select>
           </ion-item>
-      </ion-list>
-     
-      <div class="pagamento">
-        <h5>Opções de Pagamento</h5>
-        
-        <ion-item>
-          <ion-button color="--ion-background-color: #fff;" (click)="pix()" >Gerar Pix</ion-button>
-        </ion-item>
 
+          <h2 class="Titonlo">Opções de Pagamento</h2>
         <ion-item>
-          <ion-label (click)="local()" >Pagar no Local</ion-label>
-        </ion-item>
+          <ion-select placeholder="Selecione o Pagamento" [(ngModel)]="pagamento" name="pagamento">
+              <ion-select-option value="pix">Pix</ion-select-option>
+              <ion-select-option value="pagar-no-local">Pagar no Local</ion-select-option>
+            </ion-select>
+          </ion-item>
+      </ion-list>
+
+      <div class="agendar">
+        <ion-button color=" --ion-background-color: #fff;" (click)="Pagamento()">Confirmar</ion-button>
       </div>
     </div>
     
@@ -116,55 +115,54 @@
         
         <img class="qrcode" src="assets/imagens/qrcode-pix.png" alt="">
         <h6>00020126450014BR.GOV.BCB.PIX0123studiohaircut@gmail.com5204000053039865802BR5925Studio HairCut BarberShop6012Pouso Alegre62070503***63041D65</h6>
+        <ion-button class="finalizar" color=" --ion-background-color: #fff;" type="submit">Finalizar Pedido no Pix</ion-button>
+      </div>
+    </div>
+    
+    <!-- Pagamento no local -->
+    <div *ngIf="editMode == 4">
+      <div class="logoBarber">
+        <img class="studio" src="assets/imagens/Studio Haircut 1.png" alt="">
+        <img class="pix" src="assets/imagens/moeda.png" alt="">
+      </div>
+      
+      <div class="linhas">
+        <div class="line"></div>
+      </div>
+      
+      <div class="content">
+        <h1>Din Din!</h1>
+        
+        <p>Use os dados abaixo para concluir o seu pagamento:</p>
+        
+        <div class="valor">
+          <ion-label class="texto_valorTotal">Valor Total: </ion-label>
+          <ion-label class="texto_real">R$ VALOR</ion-label>
+        </div>
+        
+        <ion-list class="troco">
+          <h3>Troco: </h3>
+          <ion-item>
+            <ion-select interface="popover" placeholder='Precisa de "Troco"'>
+              <ion-select-option value="cinquenta">R$ 50</ion-select-option>
+              <ion-select-option value="cem">R$ 100</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+        
+        <ion-item class="check">
+          <ion-checkbox slot="start" class="sem_troco"></ion-checkbox>
+          <ion-label>Não precisa de troco</ion-label>
+        </ion-item>
+        
         
         <ion-button class="finalizar" color=" --ion-background-color: #fff;" type="submit">Finalizar Pedido</ion-button>
       </div>
     </div>
   </form>
     
-    <!-- Pagamento no local -->
-    <div *ngIf="editMode == 4">
-    <div class="logoBarber">
-      <img class="studio" src="assets/imagens/Studio Haircut 1.png" alt="">
-      <img class="pix" src="assets/imagens/logo_pix.png" alt="">
-    </div>
-
-    <div class="linhas">
-      <div class="line"></div>
-    </div>
-
-    <div class="content">
-      <h1>Din Din!</h1>
-
-      <p>Use os dados abaixo para concluir o seu pagamento:</p>
-
-      <div class="valor">
-        <ion-label class="texto_valorTotal">Valor Total: </ion-label>
-        <ion-label class="texto_real">R$ VALOR</ion-label>
-      </div>
-
-      <ion-list class="troco">
-        <h3>Troco: </h3>
-        <ion-item>
-          <ion-select interface="popover" placeholder='Precisa de "Troco"'>
-            <ion-select-option value="cinquenta">R$ 50</ion-select-option>
-            <ion-select-option value="cem">R$ 100</ion-select-option>
-          </ion-select>
-        </ion-item>
-      </ion-list>
-
-      <ion-item class="check">
-        <ion-checkbox slot="start" class="sem_troco"></ion-checkbox>
-        <ion-label>Não precisa de troco</ion-label>
-      </ion-item>
-      
-
-      <ion-button class="finalizar" color=" --ion-background-color: #fff;" type="submit" (click)="edit()">Finalizar Pedido</ion-button>
-    </div>
-  </div>
-
-  <!-- Tela Pagamento Concluido -->
-  <div *ngIf="editMode == 5">
+    <!-- Tela Pagamento Concluido -->
+    <div *ngIf="editMode == 5">
     <div class="container">
       <img class="confirma" src="assets/imagens/confirma.png">
     </div>

@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Agendamento } from 'src/app/models/agendamento';
 import { Servicos } from 'src/app/models/servicos';
+import { Users } from 'src/app/models/users';
 import { CrudService } from 'src/app/services/crud.service';
+
 
 
 @Component({
@@ -19,10 +21,13 @@ export class TelaAgendaPage implements OnInit {
   servicoHidratacao: string;
   nenhumCabelo: boolean  = false
   pagamento: string;
+  nomeUser: string
   mensagem: string;
   saida: string;
+  
 
   ConsultasCabelo : Servicos[];
+  ConsultasUser : Users[];
   ConsultasBarba : Servicos[];
   ConsultasTintura : Servicos[];
   ConsultasDepilacao : Servicos[];
@@ -47,6 +52,16 @@ export class TelaAgendaPage implements OnInit {
   }
 
   ngOnInit() {
+    // Consulta do Usuário
+    this.service.getUser().subscribe((res) => {
+      this.ConsultasUser = res.map((t) => {
+        return {
+          id: t.payload.doc.id,
+          ...(t.payload.doc.data() as Users)
+        }
+      })
+    })
+
     // Consulta do Cabelo
     this.service.getServicoCabelo().subscribe((res) => {
       this.ConsultasCabelo = res.map((t) => {
@@ -108,17 +123,25 @@ export class TelaAgendaPage implements OnInit {
         servicoTintura: this.servicoTintura.substr(0, 20),
         servicoDepilacao: this.servicoDepilacao.substr(0, 20),
         servicoHidratacao: this.servicoHidratacao.substr(0, 20),
-        pagamento: this.pagamento.substr(0, 10),
+        pagamento: this.pagamento.substr(0, 20),
+        nomeUser: this.nomeUser.substr(0, 20)
       };
 
     this.service.createAgenda(agendamento).then(() => {
-      this.mensagem = 'Agendamendo Realizado com sucesso!'
-      this.saida = 'Seu agendamento foi confirmado com Exito'
-      this.presentAlert();
       this.dataHora = '';
       this.servicoCabelo = '';
       this.servicoBarba = '';
+      this.servicoTintura = '';
+      this.servicoDepilacao = '';
+      this.servicoHidratacao = '';
+      this.pagamento = '';
+      this.editMode = 5
     })
+  }
+  else{
+    this.mensagem = 'Ops algo de Errado!'
+    this.saida = 'Por Favor verifique se não esqueceu de nada'
+    this.presentAlert()
   }
 }
   
@@ -144,18 +167,17 @@ export class TelaAgendaPage implements OnInit {
       case 4:
         this.editMode = 5;
         break;
-      
     }
   }
 
   // vá para tela 3(pix)
-  pix(){
-    this.editMode = 3
-  }
-
-  // vá para tela 4(pagamento no local)
-  local(){
-    this.editMode = 4
+  Pagamento(){
+    if(this.pagamento == 'pix'){
+       this.editMode = 3
+    }
+    else if(this.pagamento =='pagar-no-local'){
+      this.editMode = 4
+    }
   }
 
   tela(){
