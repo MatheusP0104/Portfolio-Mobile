@@ -124,7 +124,7 @@ export class TelaAgendaPage implements OnInit {
         servicoDepilacao: this.servicoDepilacao.substr(0, 20),
         servicoHidratacao: this.servicoHidratacao.substr(0, 20),
         pagamento: this.pagamento.substr(0, 20),
-        nomeUser: this.nomeUser.substr(0, 20)
+        // nomeUser: this.nomeUser.substr(0, 20)
       };
 
     this.service.createAgenda(agendamento).then(() => {
