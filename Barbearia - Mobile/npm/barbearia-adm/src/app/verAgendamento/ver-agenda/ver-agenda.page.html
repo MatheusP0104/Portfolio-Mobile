@@ -1,0 +1,56 @@
+<ion-header mode="ios">
+  <ion-toolbar>
+    <div class="logo">
+      <ion-button mode="ios" class="voltar" color="--ion-background-color:#323131;" routerLink="/tela-principal" (click)="tela()">
+        <img class="voltar" src="assets/imagens/voltar.png" alt="">
+      </ion-button>
+      <img src="assets/imagens/logo.png" alt="" class="centralizar">
+      <ion-icon name="notifications-outline"></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="body">
+
+  <div class="itens" *ngFor="let consulta of Consultas">
+    <ion-item mode="ios" button detail-icon="false" lines="full" class="field" [routerLink]="['/lista-agenda/', consulta.id]"> 
+    <img class="userP" src="assets/imagens/userPerfil.png" alt="Foto_Perfil">
+    <ion-label> 
+      <h5>Data: {{consulta.data}}</h5>
+      <h5>Horário: {{consulta.horario}}</h5>
+      <h5>Cabelo: {{consulta.servicoCabelo}}</h5>
+      <h5>Barba: {{consulta.servicoBarba}}</h5>
+      <h5>Tintura: {{consulta.servicoTintura}}</h5>
+      <h5>Depilação: {{consulta.servicoDepilacao}}</h5>
+      <h5>Hidratação: {{consulta.servicoHidratacao}}</h5>
+      <h5>Pagamento: {{consulta.pagamento}}</h5>
+    </ion-label>
+  </ion-item>
+</div>
+
+      <!-- <ion-label>
+        {{consulta.servicoCabelo}}
+      </ion-label> -->
+
+      <!-- <ion-label>
+        {{consulta.servicoBarba}}
+      </ion-label> -->
+
+      <!-- <ion-label class="servicoTintura">
+        {{consulta.servicoTintura}}
+      </ion-label> -->
+  
+      <!-- <ion-label class="servicoDepilacao">
+        {{consulta.servicoDepilacao}}
+      </ion-label> -->
+  
+      <!-- <ion-label class="servicoHidratacao">
+        {{consulta.servicoHidratacao}}
+      </ion-label> -->
+
+      <!-- <ion-label class="pagamento">
+        {{consulta.pagamento}}
+      </ion-label> -->
+
+
+</ion-content>

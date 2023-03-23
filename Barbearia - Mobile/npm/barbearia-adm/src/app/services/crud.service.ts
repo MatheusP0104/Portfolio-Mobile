@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { Router } from '@angular/router';
+import { Agendamento } from '../models/agendamento';
 import { Servicos } from '../models/servicos';
 import { Users } from '../models/users';
 
@@ -78,6 +79,10 @@ export class CrudService {
   getServicoHidratacao() {
     return this.firebase.collection('Servicos_Hidratacao').snapshotChanges();
   }
+  //  Lista todos os dados que estão na tabela Agendamento
+  getAgendamento() {
+    return this.firebase.collection('Agendamento').snapshotChanges();
+  }
 
   // === Fim da listagem de tudo que está no banco ===
 
@@ -109,6 +114,11 @@ export class CrudService {
   // Lista apenas um daod atraves do id da tabela Admin
   getIdAdmin(id) {
     return this.firebase.collection('Admin').doc(String(id)).valueChanges();
+  }
+
+  // Lista apenas um daod atraves do id da tabela Agendamento
+  getIdAgendamento(id) {
+    return this.firebase.collection('Agendamento').doc(String(id)).valueChanges();
   }
 
   // === Fim da listagem por ID ===

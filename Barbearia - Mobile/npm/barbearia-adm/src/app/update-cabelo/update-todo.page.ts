@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Servicos } from '../models/servicos';
 import { CrudService } from '../services/crud.service';
 
@@ -20,7 +20,6 @@ export class UpdateTodoPage implements OnInit {
   constructor(
     private service: CrudService,
     private activateRoute: ActivatedRoute,
-    private route: Router,
     public formBuilder : FormBuilder
   ) { 
     this.id = this.activateRoute.snapshot.paramMap.get('id')

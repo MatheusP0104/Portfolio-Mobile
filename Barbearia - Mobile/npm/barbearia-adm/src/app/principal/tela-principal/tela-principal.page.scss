@@ -6,11 +6,20 @@
 }
 
 .logo{
-    position: relative;
-    margin-top: 10px;
-    left: 5rem;
-    width: 65px;
-    height: 65px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo ion-icon{
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+}
+
+.logo img{
+    width: 42px;
+    height: 42px;
 }
 
 .buscar{
@@ -28,7 +37,6 @@ ion-menu{
 
 #menu{
     color: black;
-
     height: 50px;
 }
 
@@ -353,4 +361,3 @@ ion-icon{
 .linha{
     margin-left: 20px;
 }
-

@@ -1,0 +1,60 @@
+.body{
+    --ion-background-color: #fff;
+}
+
+.logo{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo ion-icon{
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    
+}
+
+.logo .centralizar{
+    position: absolute;
+    right: 50%;
+    left: 45%;
+    width: 42px;
+    height: 42px;
+}
+
+.userP{
+    width: 3rem;
+    height: 3rem;
+}
+
+.voltar{
+    width: 82px;
+    height: 42px;
+}
+
+.field{
+    width: 100%;
+}
+
+.itens h5{
+    font-family: 'Inika';
+    font-weight: 600;
+}
+
+.itens ion-note{
+    position: relative;
+    color: #000;
+    top: 10px;
+    left: 8px;
+    width: 32px;
+    height: 32px;
+}
+
+.itens ion-button{
+    position: relative;
+    color: #000;
+    width: 30px;
+    top: 10px;
+    left: 15px;
+}

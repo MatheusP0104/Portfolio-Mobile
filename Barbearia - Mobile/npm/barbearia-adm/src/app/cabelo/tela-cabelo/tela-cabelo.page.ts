@@ -16,8 +16,6 @@ export class TelaCabeloPage implements OnInit {
   Consultas : Servicos[];
   editForm : FormGroup;
   id : any;
-  private holdTimeout: any;
-  
   constructor(
     private service : CrudService,
     private activateRouter : ActivatedRoute,

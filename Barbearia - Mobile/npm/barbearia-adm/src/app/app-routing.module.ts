@@ -95,6 +95,15 @@ const routes: Routes = [
     path: 'update-hidratacao/:id',
     loadChildren: () => import('./update-hidratacao/update-hidratacao/update-hidratacao.module').then( m => m.UpdateHidratacaoPageModule)
   },
+  {
+    path: 'ver-agenda',
+    loadChildren: () => import('./verAgendamento/ver-agenda/ver-agenda.module').then( m => m.VerAgendaPageModule)
+  },
+  {
+    path: 'lista-agenda/:id',
+    loadChildren: () => import('./listagemAgenda/lista-agenda/lista-agenda.module').then( m => m.ListaAgendaPageModule)
+  },
+
 
 
 ];
