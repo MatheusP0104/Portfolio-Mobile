@@ -1,3 +1,5 @@
+import { Users } from "./users";
+
 export class Agendamento {
     data : string;
     horario : string;
@@ -7,5 +9,5 @@ export class Agendamento {
     servicoDepilacao : string;
     servicoHidratacao : string;
     pagamento : string;
-    // nomeUser : string
+    // nomeUser : Users[]
 }

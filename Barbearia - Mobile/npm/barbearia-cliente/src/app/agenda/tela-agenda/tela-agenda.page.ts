@@ -4,6 +4,7 @@ import { Agendamento } from 'src/app/models/agendamento';
 import { Servicos } from 'src/app/models/servicos';
 import { Users } from 'src/app/models/users';
 import { CrudService } from 'src/app/services/crud.service';
+import { ActivatedRoute } from '@angular/router';
 
 
 
@@ -14,16 +15,15 @@ import { CrudService } from 'src/app/services/crud.service';
 })
 export class TelaAgendaPage implements OnInit {
   dataHora: string;
-  servicoCabelo: string;
-  servicoBarba: string;
-  servicoTintura: string;
-  servicoDepilacao: string;
-  servicoHidratacao: string;
-  nenhumCabelo: boolean  = false
+  servicoCabelo: string = 'Nenhum';
+  servicoBarba: string = 'Nenhum';
+  servicoTintura: string = 'Nenhum';
+  servicoDepilacao: string = 'Nenhum';
+  servicoHidratacao: string = 'Nenhum';
   pagamento: string;
-  nomeUser: string
   mensagem: string;
   saida: string;
+  id : any
   
 
   ConsultasCabelo : Servicos[];
@@ -33,11 +33,13 @@ export class TelaAgendaPage implements OnInit {
   ConsultasDepilacao : Servicos[];
   ConsultasHidratacao : Servicos[];
   public editMode = 1
+
   
 
   constructor(
     private service: CrudService,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private route : ActivatedRoute
   ) {}
 
   async presentAlert() {
@@ -113,38 +115,33 @@ export class TelaAgendaPage implements OnInit {
         })
       })
   }
-  onSubmit(){
-    if (this.dataHora){
-      const agendamento: Agendamento = {
-        data: this.dataHora.substr(0, 10),
-        horario: this.dataHora.substr(11, 5),
-        servicoCabelo: this.servicoCabelo.substr(0, 20),
-        servicoBarba: this.servicoBarba.substr(0, 20),
-        servicoTintura: this.servicoTintura.substr(0, 20),
-        servicoDepilacao: this.servicoDepilacao.substr(0, 20),
-        servicoHidratacao: this.servicoHidratacao.substr(0, 20),
-        pagamento: this.pagamento.substr(0, 20),
-        // nomeUser: this.nomeUser.substr(0, 20)
-      };
 
-    this.service.createAgenda(agendamento).then(() => {
-      this.dataHora = '';
-      this.servicoCabelo = '';
-      this.servicoBarba = '';
-      this.servicoTintura = '';
-      this.servicoDepilacao = '';
-      this.servicoHidratacao = '';
-      this.pagamento = '';
-      this.editMode = 5
-    })
-  }
-  else{
-    this.mensagem = 'Ops algo de Errado!'
-    this.saida = 'Por Favor verifique se não esqueceu de nada'
-    this.presentAlert()
-  }
-}
-  
+
+  onSubmit(){
+      if (this.dataHora && this.servicoCabelo != 'Nenhum' || this.servicoBarba !='Nenhum' || this.servicoTintura !='Nenhum' || this.servicoDepilacao!='Nenhum' || this.servicoHidratacao !='Nenhum'){
+          const agendamento: Agendamento = {
+            data: this.dataHora.substr(0, 10),
+            horario: this.dataHora.substr(11, 5),
+            servicoCabelo: this.servicoCabelo.substr(0, 20),
+            servicoBarba: this.servicoBarba.substr(0, 20),
+            servicoTintura: this.servicoTintura.substr(0, 20),
+            servicoDepilacao: this.servicoDepilacao.substr(0, 20),
+            servicoHidratacao: this.servicoHidratacao.substr(0, 20),
+            pagamento: this.pagamento.substr(0, 20),
+          };
+        this.service.createAgenda(agendamento).then(() => {
+          this.dataHora = '';
+          this.pagamento = '';
+          this.editMode = 5
+        })
+    }
+    else{
+      this.mensagem = 'Ops algo de Errado!'
+      this.saida = 'Por Favor verifique se não esqueceu de nada'
+      this.presentAlert()
+    }
+
+    }
 
   edit(){
     switch (this.editMode){

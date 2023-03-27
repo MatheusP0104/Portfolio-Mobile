@@ -18,7 +18,9 @@ export class ListaAgendaPage implements OnInit {
     private activateroute: ActivatedRoute
   ) { 
     this.id = this.activateroute.snapshot.paramMap.get('id')
-    this.service.getIdAgendamento(this.id).subscribe((data) => {})
+    this.service.getIdAgendamento(this.id).subscribe(() => {
+  
+    })
   }
 
   ngOnInit() {

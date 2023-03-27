@@ -2,7 +2,7 @@
   <ion-toolbar>
     <div class="logo">
 
-      <ion-button mode="ios" class="voltar" color="--ion-background-color:#323131;" routerLink="/tela-principal">
+      <ion-button mode="ios" class="voltar" color="--ion-background-color:#323131;" routerLink="/ver-agenda">
         <img id="img_voltar" src="assets/imagens/voltar.png" alt="">
       </ion-button>
  
@@ -24,9 +24,9 @@
     </ion-item>
   </div>
 
-  <div class="dadosServicos">
-    <ion-item>
-      
+  <div>
+    <ion-item *ngFor="let consulta of Consultas">
+      <ion-label>{{consulta.servicoCabelo}}</ion-label>
     </ion-item>
   </div>
 
