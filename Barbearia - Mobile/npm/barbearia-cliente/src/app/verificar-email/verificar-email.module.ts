@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ConfigPageRoutingModule } from './config-routing.module';
+import { VerificarEmailPageRoutingModule } from './verificar-email-routing.module';
 
-import { ConfigPage } from './config.page';
+import { VerificarEmailPage } from './verificar-email.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ConfigPageRoutingModule
+    VerificarEmailPageRoutingModule
   ],
-  declarations: [ConfigPage]
+  declarations: [VerificarEmailPage]
 })
-export class ConfigPageModule {}
+export class VerificarEmailPageModule {}

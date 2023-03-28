@@ -59,10 +59,7 @@ const routes: Routes = [
     path: 'tela-mapa',
     loadChildren: () => import('./mapa/tela-mapa/tela-mapa.module').then( m => m.TelaMapaPageModule)
   },
-  {
-    path: 'config',
-    loadChildren: () => import('./config/config.module').then( m => m.ConfigPageModule)
-  },
+  
   {
     path: 'tela-perfil',
     loadChildren: () => import('./perfil/tela-perfil/tela-perfil.module').then( m => m.TelaPerfilPageModule)
@@ -79,6 +76,11 @@ const routes: Routes = [
     path: 'tela-rede-social',
     loadChildren: () => import('./redesSociais/tela-rede-social/tela-rede-social.module').then( m => m.TelaRedeSocialPageModule)
   },
+  {
+    path: 'verificar-email',
+    loadChildren: () => import('./verificar-email/verificar-email.module').then( m => m.VerificarEmailPageModule)
+  },
+
 
 ];
 

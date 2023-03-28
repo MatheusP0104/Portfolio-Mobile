@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Users } from 'src/app/models/users';
 import { CrudService } from 'src/app/services/crud.service';
+import { MenuController } from '@ionic/angular';
+import { Router, NavigationEnd } from '@angular/router';
 
 
 @Component({
@@ -11,7 +13,7 @@ import { CrudService } from 'src/app/services/crud.service';
 export class TelaPrincipalPage implements OnInit {
   Consultas : Users[];
 
-  constructor(private service : CrudService) { }
+  constructor(private service : CrudService, private menuController: MenuController, private router:Router) { }
 
   ngOnInit() {
     this.service.getUser().subscribe((res) =>{
@@ -22,6 +24,11 @@ export class TelaPrincipalPage implements OnInit {
         }
       })
     })
+
+  }
+
+  onClick() {
+    this.menuController.close();
   }
 
   todoList() {
