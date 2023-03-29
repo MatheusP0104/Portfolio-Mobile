@@ -1,258 +1,139 @@
-.body{
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Teko:wght@700&display=swap');
+.fundo{
     --ion-background-color:#323131;
 }
 
-.container{
-    position: absolute;
-    width: 282px;
-    height: 530px;
-    left: 19px;
-    top: 40px;
+.content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  
+  .form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
     background: #D9D9D9;
     border-radius: 30px;
-    
-    
-}
-
-.seta{
-    cursor: pointer;
-}
-
-#voltar{
-    position: relative;
-    right: 20px;
-}
-//nome
-#lines1{
-    position: absolute;
-    width: 216px;
-    left: 35px;
-    top: 120px;
-    border: 1px solid #000000;  
-}
-
-#nome{
-    position: absolute;
-    width: 56px;
-    height: 30px;
-    left: 115px;
-    top: 40px;
+    height: 50%;
     font-family: 'Inika';
     font-style: normal;
-    font-weight: 900;
+    font-weight: 700;
     font-size: 20px;
-    line-height: 39px;
-}
-
-#input_name{
-    position: absolute;
-    width: 195px;
-    height: 0px;
-    left: 60px;
-    top: 105px;
-    font-family: 'Inika';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 39px;
-}
-
-#img_user{
-    position: absolute;
-    left: 35px;
-    top: 95px;
-
-}
-
-//email
-#lines2{
-    position: absolute;
-    width: 216px;
-    left: 35px;
-    top: 230px;
-    border: 1px solid #000000;  
-}
-
-#email{
-    position: absolute;
-    width: 60px;
-    height: 30px;
-    left: 110px;
-    top: 140px;
-    font-family: 'Inika';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 39px;
-}
-
-#input_email{
-    position: absolute;
-    width: 195px;
-    height: 0px;
-    left: 70px;
-    top: 215px;
-    font-family: 'Inika';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 39px;
-}
-
-#img_email{
-    position: absolute;
-    left: 35px;
-    top: 203px;
-
-}
-
-//Telefone
-#lines3{
-    position: absolute;
-    width: 216px;
-    left: 35px;
-    top: 345px;
-    border: 1px solid #000000;  
-}
-
-#telefone{
-    position: absolute;
-    width: 90px;
-    height: 30px;
-    left: 105px;
-    top: 250px;
-    font-family: 'Inika';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 39px;
-}
-
-#input_telefone{
-    position: absolute;
-    width: 195px;
-    height: 0px;
-    left: 65px;
-    top: 332px;
-    font-family: 'Inika';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 39px;
-}
-
-#img_telefone{
-    position: absolute;
-    left: 35px;
-    top: 320px;
-}
-
-//Senha
-#lines4{
-    position: absolute;
-    width: 216px;
-    left: 35px;
-    top: 450px;
-    border: 1px solid #000000;  
-}
-
-#senha{
-    position: absolute;
-    width: 90px;
-    height: 30px;
-    left: 115px;
-    top: 360px;
-    font-family: 'Inika';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 39px;
-}
-
-#input_senha{
-    position: absolute;
-    width: 195px;
-    height: 0px;
-    left: 60px;
-    top: 435px;
-    font-family: 'Inika';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 39px;
-}
-
-#img_senha{
-    position: absolute;
-    left: 35px;
-    top: 425px;
-}
-
-ion-checkbox {
-    --size: 32px;
-    --background: #D9D9D9;
-    position: absolute;
-    left: 220px;
-    top: 420px;
-    opacity: 0;
-
+    line-height: 26px;
   }
 
-ion-checkbox::part(container) {
-    border-radius: 6px;
-    border: 2px solid ;
-}
+  .user-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
 
-#olho{
-    position:absolute;
-    left: 222px;
-    top: 425px;
-}
+  
+  .inp_user {
+    display: flex;
+    align-items: center;
+    margin-bottom: auto;
+  }
 
-//BT_Confirma
-#botao{
-    box-sizing: border-box;
+  .inp_user img {
+    margin-right: 10px;
+  }
+  
+  .input_user {
+    flex: 1;
+    border: 1px solid #000;
+    border-radius: 10px;
+  }
+
+
+//Senhas
+.senha-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30%;
+  }
+
+  .senha-container a{
+    cursor: pointer;
+  }
+
+  .inp_senha{
+    display: flex;
+    align-items: center;
+    margin-bottom: auto;
+    position: relative;
+  }
+
+  .input_senha{
+    flex: 1;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding-right: 30px;
+  }
+
+  .img_senha{
+    margin-right: 10px;
+  }
+
+  .img_olho{
+    position: absolute;
+    right: 0;
+    margin-right: 15px;
+    top: 50%;
+    z-index: 2;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+
+  
+  #botao {
+    margin-top: auto;
+    width: 60%;
     font-family: 'Inika';
     font-style: normal;
     font-weight: 700;
     font-size: 25px;
-    position: absolute;
-    width: 215px;
-    height: 69px;
-    left: 34px;
-    top: 550px;
     background: #323131;
     border: 2px solid #FFFFFF;
     border-radius: 30px;
+  }
+  
+.title-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25%;
+  }
+  
+  .titulo {
+    max-width: 100%;
+    font-family: 'Inika';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 25px;
+    color: #FFFFFF;
+  }
+
+// voltar
+.voltar{
+    position: absolute;
+    top: 20px;
+    left: -10px;
+    width: 95px;
+    height: 82px;
 }
 
-// Validação
-.valid_name{
-    position: relative;
-    top: 55px;
-    left: 15px;
-    font-family: 'Inika';
-
-}
-
-.valid_email{
-    position: fixed;
-    top: 265px;
-    left: 35px;
-    font-family: 'Inika';
-}
-
-.valid_tel{
-    position: fixed;
-    top: 380px;
-    left: 35px;
-    font-family: 'Inika';
-}
-
-.valid_senha{
-    position: fixed;
-    top: 485px;
-    left: 35px;
-    font-family: 'Inika';
-
+#img_voltar{
+    width: 150%;
+    height: 100%;
 }

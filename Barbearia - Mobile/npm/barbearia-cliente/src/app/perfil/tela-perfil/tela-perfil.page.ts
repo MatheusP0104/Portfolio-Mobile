@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
-import { Users } from 'src/app/models/users';
-import { CrudService } from 'src/app/services/crud.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AngularFireAuth } from '@angular/fire/compat/auth'
 
 
 @Component({
@@ -11,45 +9,21 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./tela-perfil.page.scss'],
 })
 export class TelaPerfilPage implements OnInit {
-  id : any
-  editForm: FormGroup
-  Consultas : Users[];
+  userEmail:string
   icone: string = 'create-outline'
   tipo : string
   public editMode = false
 
-  constructor(
-    private service: CrudService,
-    public formBuilder: FormBuilder,
-    private activateRoute: ActivatedRoute,
-    private route: Router,) { 
+  constructor(private afAuth: AngularFireAuth) { 
+    this.afAuth.authState.subscribe(user =>{
+      if(user){
+        this.userEmail = user.email
+      }
+    })
     
-    this.service.getUser().subscribe((res) => {
-      this.Consultas = res.map((t) => {
-        return {
-          id: t.payload.doc.id,
-          ...(t.payload.doc.data() as Users)
-        }
-      })
-    })
-
-    this.id = this.activateRoute.snapshot.paramMap.get('id')
-    this.service.getIdUsers(this.id).subscribe((data) => {
-      this.editForm = this.formBuilder.group({
-        nome: [data['nome']],
-        email: [data['email']],
-        telefone: [data['telefone']],
-        senha: [data['senha']],
-      })
-    })
   }
 
-  todoList() {
-    this.service.getUser().subscribe((data) => {
-      console.log(data)
-    })
-  }
-  
+
   edit(){
     switch (this.editMode){
       case false:
@@ -67,17 +41,7 @@ export class TelaPerfilPage implements OnInit {
     }
   }
 
-  ngOnInit() {
-     this.editForm = this.formBuilder.group({
-      nome: [''],
-      email: [''],
-      telefone: [''],
-      senha: ['']
-    })
-  }
+  ngOnInit() {}
 
-  onSubmit() {
-    this.service.updateUsers(this.id, this.editForm.value)
-  }
 
 }

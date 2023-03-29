@@ -1,67 +1,42 @@
-<ion-content class="body" mode="ios">
-  <div class="container">
-  <form>
-    <img src="assets/imagens/voltar.png" alt="seta_voltar" routerLink="/home" class="seta">
+<ion-content class="fundo" mode="ios">
+  <div class="content-container">
+    <ion-button class="voltar" color="--ion-background-color:#323131;" routerLink="/home">
+      <img id="img_voltar" src="assets/imagens/voltar_branco.png" alt="">
+    </ion-button>
 
-    <!-- <ion-label id="nome">Nome</ion-label>
-    <img id="img_user" src="assets/imagens/user.png" alt="Usuário">
-    <ion-input type="text" name="nome" id="input_name"></ion-input>
-
-<div *ngIf="editMode">
-  <ion-item color="--ion-background-color:#323131;" class="valid_name" lines="none" *ngIf="userForm.get('nome').errors?.required || userForm.get('nome').errors?.minLength(3) || userForm.get('nome').errors?.maxLength(50) || userForm.get('nome').errors?.pattern('[a-zA-Z]*')"> 
-    <ion-text color="danger">
-      Nome Inválido
-    </ion-text>
-  </ion-item>
-</div>
-    <div id="lines1"></div> -->
-    
-    
-    <ion-label id="email">E-mail</ion-label>
-    <img id="img_email" src="assets/imagens/email.png" alt="Email"> 
-    <ion-input id="input_email" #email required type="email"></ion-input>
-  
-    <!-- <div *ngIf="editMode">
-      <ion-item color="--ion-background-color:#323131;" lines="none" class="valid_email" *ngIf="(userForm.get('email').errors?.required || userForm.get('email').errors?.email && userSignUp.submitted)">
-        <ion-text color="danger">
-          Email Inválido
-        </ion-text>
-      </ion-item>
-    </div> -->
-    <div id="lines2"></div>
-    
-    
-    <!-- <ion-label id="telefone">Telefone</ion-label>
-    <img id="img_telefone" src="assets/imagens/telefone.png" alt="Telefone">
-    <ion-input id="input_telefone" formControlName="telefone" simpleMask="(99)99999-9999"></ion-input>
-    
-    <div *ngIf="editMode">
-      <ion-item color="--ion-background-color:#323131;" lines="none" class="valid_tel" *ngIf="(userForm.get('telefone').errors?.required || userForm.get('telefone').errors?.minLength(14) && userSignUp.submitted)">
-        <ion-text color="danger">
-          Número Inválido
-        </ion-text>
-      </ion-item>
+    <div class="title-container">
+      <div class="titulo">
+        <ion-label>Cadastro</ion-label>
+      </div>
     </div>
-      <div id="lines3"></div> -->
-    
-    <ion-label id="senha">Senha</ion-label>
-    <img id="img_senha" src="assets/imagens/senha.png" alt="Cadeado">
-    
-    <ion-input id="input_senha" #senha required type="password"></ion-input>
-    
-    <img src="assets/imagens/olho_aberto.png" alt="olho" id="olho">
-  
-    
-    <!-- <div *ngIf="editMode">
-      <ion-item color="--ion-background-color:#323131;" lines="none" class="valid_senha" *ngIf="(userForm.get('senha').errors?.required || userForm.get('senha').errors?.minLength(8) || userForm.get('senha').errors?.maxLength(16) && userSignUp.submitted)">
-        <ion-text color="danger">
-          Senha Inválida
-        </ion-text>
-      </ion-item>
-    </div> -->
-    <div id="lines4"></div>
-    
-    <ion-button mode="ios" id="botao" color="--ion-background-color:#323131;" (click)="singUp(email, senha)">Confirmar</ion-button>
-  </form> 
-</div>
+
+    <div class="form-container">
+
+      <div class="user-container">
+        <!-- Usuário -->
+        <ion-item class="usuario" color="--ion-background-color: #D9D9D9" lines="none">
+          <ion-label>Insira o E-mail</ion-label>
+        </ion-item>
+        
+        <ion-item class="inp_user" color="--ion-background-color: #D9D9D9" lines="none">  
+          <img src="assets/imagens/user.png" alt="Usuário">
+          <ion-input class="input_user" id="email" required></ion-input>
+        </ion-item>
+      </div>
+
+      <!-- Senha -->
+      <div class="senha-container">
+        <ion-item class="senhas" color="--ion-background-color: #D9D9D9" lines="none">
+          <ion-label>Insira a Senha</ion-label>
+        </ion-item>
+      
+        <ion-item class="inp_senha" color="--ion-background-color: #D9D9D9" lines="none">  
+          <img class="img_senha" src="assets/imagens/senha.png" alt="Senha">
+          <ion-input class="input_senha" id="senha" type="{{ showPassword ? 'text' : 'password' }}"  [(ngModel)]="password" required></ion-input>
+          <ion-icon class="img_olho" name="{{ showPassword ? 'eye-off' : 'eye' }}" (click)="showPassword = !showPassword"></ion-icon>
+        </ion-item>
+      </div>
+    </div>
+    <ion-button id="botao" color="--ion-background-color:#323131;" (click)="Cadastrar()">Confirmar</ion-button>
+  </div>
 </ion-content>

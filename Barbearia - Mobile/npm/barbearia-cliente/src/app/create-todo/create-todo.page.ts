@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CrudService } from '../services/crud.service';
 import { AlertController } from '@ionic/angular';
-import { AuthServiceService } from '../auth/auth-service.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 
 
 
@@ -14,26 +13,51 @@ import { AuthServiceService } from '../auth/auth-service.service';
   styleUrls: ['./create-todo.page.scss'],
 })
 export class CreateTodoPage implements OnInit {
-  userForm : FormGroup
-  public editMode = false
-
+  password: string = '';
+  showPassword: boolean = false;
+  email: any
+  senha : any
+ 
   constructor(
-    public authService: AuthServiceService,
-    private service: CrudService,
-    public formBuilder: FormBuilder,
-    private route : Router,
+    private auth: AngularFireAuth,
+    private router : Router,
     private alertController: AlertController
   ) { }
 
   async presentAlert() {
     const alert = await this.alertController.create({
-      header: 'Alerta!',
-      subHeader: 'Algo deu errado =(',
-      message: 'Por Favor, preencha todos os campos corretamente.',
+      header: 'Verificar Email',
+      subHeader: 'Olá',
+      message: 'Enviamos um Email de Verificação para você',
       buttons: ['Voltar'],
     });
 
     await alert.present();
+  }
+
+
+  Cadastrar(){
+    this.email = ((document.getElementById("email") as HTMLInputElement).value )
+    this.senha = ((document.getElementById("senha") as HTMLInputElement).value )
+
+   
+    this.auth.createUserWithEmailAndPassword(this.email, this.senha).then(userCredential => {
+
+    // Signed in
+    if (userCredential.user) {
+     
+      userCredential.user.sendEmailVerification()
+      this.presentAlert()
+      this.router.navigateByUrl('/tela-login')
+    } else {
+      window.alert("Não foi possivel criar sua conta")
+    }
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    window.alert(errorMessage)
+  });
   }
 
   ngOnInit() {
@@ -45,14 +69,7 @@ export class CreateTodoPage implements OnInit {
     // })
   }
 
-  singUp(email, senha){
-    this.authService.RegisterUser(email.value, senha.value).then((res) =>{
-      console.log('Deu certo')
-      this.authService.SendVerificationMail()
-      this.route.navigate(['/verificar-email'])
-    }).catch(()=>{console.log('Deu errado')})
-
-  }
+  
 
   // onSubmit() {
   //   switch (this.editMode){
