@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Users } from 'src/app/models/users';
-import { CrudService } from 'src/app/services/crud.service';
+import { MenuController } from '@ionic/angular';
+import { AngularFireAuth } from '@angular/fire/compat/auth'
+import { Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -9,25 +12,35 @@ import { CrudService } from 'src/app/services/crud.service';
   styleUrls: ['./tela-principal.page.scss'],
 })
 export class TelaPrincipalPage implements OnInit {
-  Consultas : Users[];
+  userEmail: string
+  isLoggedIn:boolean
+  private userDataKey = 'user_data';
+ 
 
-  constructor(private service : CrudService) { }
-
-  ngOnInit() {
-    this.service.getAdmin().subscribe((res) =>{
-      this.Consultas = res.map((t) =>{
-        return {
-          id: t.payload.doc.id,
-          ...(t.payload.doc.data() as Users)
+  constructor(
+    private menuController: MenuController, 
+    private afAuth: AngularFireAuth,
+    private router: Router) {
+      this.afAuth.authState.subscribe(user =>{
+        if(user){
+          this.userEmail = user.displayName
         }
       })
-    })
+     }
+
+  ngOnInit() {
+   
   }
 
-  todoList() {
-    this.service.getAdmin().subscribe((data) => {
-      console.log(data)
-    })
+  onClick() {
+    this.menuController.close();
   }
+
+  logout(){
+    localStorage.removeItem(this.userDataKey)
+    this.router.navigateByUrl('/tela-login')
+  }
+
+
 
 }

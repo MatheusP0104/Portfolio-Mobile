@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
+import { Router } from '@angular/router';
+
+
 
 
 @Component({
@@ -10,14 +13,17 @@ import { AngularFireAuth } from '@angular/fire/compat/auth'
 })
 export class TelaPrincipalPage implements OnInit {
   userEmail: string
+  isLoggedIn:boolean
+  private userDataKey = 'user_data';
  
 
   constructor(
     private menuController: MenuController, 
-    private afAuth: AngularFireAuth) {
+    private afAuth: AngularFireAuth,
+    private router: Router) {
       this.afAuth.authState.subscribe(user =>{
         if(user){
-          this.userEmail = user.email
+          this.userEmail = user.displayName
         }
       })
      }
@@ -29,5 +35,12 @@ export class TelaPrincipalPage implements OnInit {
   onClick() {
     this.menuController.close();
   }
+
+  logout(){
+    localStorage.removeItem(this.userDataKey)
+    this.router.navigateByUrl('/tela-login')
+  }
+
+
 
 }

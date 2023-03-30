@@ -29,7 +29,21 @@
     line-height: 26px;
   }
 
+  .email-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
   .user-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .tel-container{
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,11 +57,49 @@
     margin-bottom: auto;
   }
 
+  .inp_tel {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+  }
+
+  .inp_nome {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10%;
+  }
+
+  .inp_nome img {
+    margin-right: 10px;
+    width: 21px;
+    height: 21px;
+  }
+
+  .inp_tel img {
+    margin-right: 10px;
+    width: 21px;
+    height: 21px;
+  }
+  
   .inp_user img {
     margin-right: 10px;
+    width: 21px;
+    height: 21px;
   }
   
   .input_user {
+    flex: 1;
+    border: 1px solid #000;
+    border-radius: 10px;
+  }
+
+  .input_tel {
+    flex: 1;
+    border: 1px solid #000;
+    border-radius: 10px;
+  }
+
+  .input_nome {
     flex: 1;
     border: 1px solid #000;
     border-radius: 10px;
@@ -60,7 +112,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-bottom: 30%;
+    margin-bottom: 10%;
+    margin-top: 10%;
   }
 
   .senha-container a{
@@ -97,7 +150,7 @@
 
   
   #botao {
-    margin-top: auto;
+    margin-top: 10%;
     width: 60%;
     font-family: 'Inika';
     font-style: normal;

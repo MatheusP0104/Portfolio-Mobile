@@ -29,6 +29,10 @@
     line-height: 26px;
   }
 
+  a{
+    text-decoration: none;
+  }
+
   .user-container{
     display: flex;
     flex-direction: column;
@@ -45,6 +49,8 @@
 
   .inp_user img {
     margin-right: 10px;
+    width: 21px;
+    height: 21px;
   }
   
   .input_user {
@@ -61,6 +67,7 @@
     justify-content: center;
     align-items: center;
     margin-bottom: 30%;
+    margin-top: 10px;
   }
 
   .senha-container a{
@@ -97,7 +104,7 @@
 
   
   #botao {
-    margin-top: auto;
+    margin-top: 10%;
     width: 60%;
     font-family: 'Inika';
     font-style: normal;

@@ -79,7 +79,11 @@ const routes: Routes = [
   {
     path: 'verificar-email',
     loadChildren: () => import('./verificar-email/verificar-email.module').then( m => m.VerificarEmailPageModule)
+  },  {
+    path: 'recuperar-senha',
+    loadChildren: () => import('./recuperar-senha/recuperar-senha.module').then( m => m.RecuperarSenhaPageModule)
   },
+
 
 
 ];

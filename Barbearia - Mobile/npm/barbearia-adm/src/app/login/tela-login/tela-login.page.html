@@ -1,33 +1,36 @@
 <ion-content class="fundo" mode="ios">
-  <ion-button class="voltar" color="--ion-background-color:#323131;" routerLink="/home">
-    <img id="img_voltar" src="assets/imagens/voltar_branco.png" alt="">
-  </ion-button>
-  
-  <div class="logo">
-  <img src="assets/imagens/logo.png" alt="">
-</div>
-<div class="container">
-  <!-- Usuário -->
-  <ion-label id="usuario">Usuário ou E-mail</ion-label>
+  <div class="content-container">
+    <ion-button class="voltar" color="--ion-background-color:#323131;" routerLink="/home">
+      <img id="img_voltar" src="assets/imagens/voltar_branco.png" alt="">
+    </ion-button>
 
-  <img id="img_user" src="assets/imagens/user.png" alt="Usuário">
+    <div class="logo-container">
+      <div class="logo">
+        <img src="assets/imagens/logo.png" alt="">
+      </div>
+    </div>
 
-  <ion-input id="input_user" name="usuario"></ion-input>
+    <div class="form-container">
 
-  <div id="lines1"></div>
+      <div class="user-container">
+        <!-- Usuário -->
+      
+        <ion-item class="inp_user" color="--ion-background-color: #D9D9D9" lines="none">  
+          <img src="assets/imagens/email.png" alt="Usuário">
+          <ion-input placeholder="Email" class="input_user" id="email" required></ion-input>
+        </ion-item>
+      </div>
 
-  <!-- Senha -->
-  <ion-label id="senha">Senha</ion-label>
-
-  <img id="img_senha" src="assets/imagens/senha.png" alt="Cadeado">
-
-  <ion-input id="input_senha" name="senha" type="password"></ion-input>
-
-  <img id="olho_aberto" src="assets/imagens/olho_aberto.png" alt="Ver_Senha">
-  <ion-checkbox></ion-checkbox>
-
-  <div id="lines2"></div>
-
-</div>
-<ion-button id="botao" color="--ion-background-color:#323131;" routerLink="/tela-principal">Confirmar</ion-button>
+      <!-- Senha -->
+      <div class="senha-container">
+        <ion-item class="inp_senha" color="--ion-background-color: #D9D9D9" lines="none">  
+          <img class="img_senha" src="assets/imagens/senha.png" alt="Senha">
+          <ion-input placeholder="Senha" class="input_senha" id="senha" type="{{ showPassword ? 'text' : 'password' }}"  [(ngModel)]="password" required></ion-input>
+          <ion-icon class="img_olho" name="{{ showPassword ? 'eye-off' : 'eye' }}" (click)="showPassword = !showPassword"></ion-icon>
+        </ion-item>
+        <p>Esqueceu sua senha?<a routerLink="/recuperar-senha">Clique Aqui</a></p>
+      </div>
+    </div>
+    <ion-button id="botao" color="--ion-background-color:#323131;" (click)="login()">Confirmar</ion-button>
+  </div>
 </ion-content>

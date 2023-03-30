@@ -24,6 +24,7 @@
 
 ion-menu{
     --ion-background-color: #fff;
+    cursor: pointer;
 }
 
 #menu{
@@ -62,6 +63,7 @@ ion-menu{
     font-family: 'Inika';
     font-weight: 600;
     font-size: 25px;
+    width: 250px;
 }
 
 .lines1{

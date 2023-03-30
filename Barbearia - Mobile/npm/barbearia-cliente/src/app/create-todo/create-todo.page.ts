@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { NavController } from '@ionic/angular';
 
 
 
@@ -17,11 +18,15 @@ export class CreateTodoPage implements OnInit {
   showPassword: boolean = false;
   email: any
   senha : any
+  nome: any
+  tel: any
+  phoneProvider: any
  
   constructor(
     private auth: AngularFireAuth,
     private router : Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private navController: NavController
   ) { }
 
   async presentAlert() {
@@ -39,13 +44,14 @@ export class CreateTodoPage implements OnInit {
   Cadastrar(){
     this.email = ((document.getElementById("email") as HTMLInputElement).value )
     this.senha = ((document.getElementById("senha") as HTMLInputElement).value )
-
-   
+    this.nome = ((document.getElementById("nome") as HTMLInputElement).value )
+    this.tel = ((document.getElementById("tel") as HTMLInputElement).value )
+    
+    
     this.auth.createUserWithEmailAndPassword(this.email, this.senha).then(userCredential => {
-
+      userCredential.user.updateProfile({displayName: this.nome})
     // Signed in
     if (userCredential.user) {
-     
       userCredential.user.sendEmailVerification()
       this.presentAlert()
       this.router.navigateByUrl('/tela-login')
@@ -60,35 +66,6 @@ export class CreateTodoPage implements OnInit {
   });
   }
 
-  ngOnInit() {
-    // this.userForm = this.formBuilder.group({
-    //   nome: ['',Validators.compose([Validators.required,Validators.minLength(3),Validators.maxLength(50),Validators.pattern('[a-zA-Z]*')])],
-    //     email: ['',Validators.compose([Validators.required,Validators.email])],
-    //     telefone: ['',Validators.compose([Validators.required, Validators.minLength(14)])],
-    //     senha: ['',Validators.compose([Validators.required, Validators.minLength(8), Validators.maxLength(16)])]
-    // })
-  }
-
-  
-
-  // onSubmit() {
-  //   switch (this.editMode){
-  //     case false:
-  //     this.editMode = true
-  //     break
-    
-  //     case true:
-  //       this.editMode = false
-  //       break
-  //     }
-  //   if (!this.userForm.valid) {
-  //     this.presentAlert()
-  //   } else {
-  //     this.service.createUser(this.userForm.value).then(() => {
-  //       this.userForm.reset();
-  //       this.route.navigate(['/tela-principal'])
-  //     }).catch((err) => console.log(err))
-  //   }
-  // }
+  ngOnInit() {}
 
 }

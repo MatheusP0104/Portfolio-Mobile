@@ -1,137 +1,130 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Teko:wght@700&display=swap');
-
 .fundo{
-    position: relative;
     --ion-background-color:#323131;
 }
 
-.logo{
+.content-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    margin-top: 60px;
-}
-
-
-.container{
+    height: 100vh;
+  }
+  
+  .form-container {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    margin-left: 18px;
-    margin-top: 20px;
-    width: 282px;
-    height: 327px;
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto;
     background: #D9D9D9;
     border-radius: 30px;
+    height: 50%;
     font-family: 'Inika';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
     line-height: 26px;
-    
-}
+  }
 
-// User
-#usuario{
-    margin-top: 30px;
-    
-}
+  a{
+    text-decoration: none;
+  }
 
-#input_user{
+  .user-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  
+  .inp_user {
+    display: flex;
+    align-items: center;
+    margin-bottom: auto;
+  }
+
+  .inp_user img {
+    margin-right: 10px;
+    width: 21px;
+    height: 21px;
+  }
+  
+  .input_user {
+    flex: 1;
+    border: 1px solid #000;
+    border-radius: 10px;
+  }
+
+
+//Senhas
+.senha-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30%;
+    margin-top: 10px;
+  }
+
+  .senha-container a{
+    cursor: pointer;
+  }
+
+  .inp_senha{
+    display: flex;
+    align-items: center;
+    margin-bottom: auto;
+    position: relative;
+  }
+
+  .input_senha{
+    flex: 1;
+    border: 1px solid #000;
+    border-radius: 10px;
+    padding-right: 30px;
+  }
+
+  .img_senha{
+    margin-right: 10px;
+  }
+
+  .img_olho{
     position: absolute;
-    width: 190px;
-    left: 80px; 
-    top: 273px;
-    font-family: 'Inika';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 39px;
-}
+    right: 0;
+    margin-right: 15px;
+    top: 50%;
+    z-index: 2;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
 
-#img_user{
-    position: absolute;
-    left: 53px; 
-    top: 292px;
-
-}
-
-#lines1{
-    position: absolute;
-    width: 216px;
-    left: 53px;
-    top: 315px;
-    border: 1px solid #000000;  
-}
-
-// Senha
-#senha{
-    position: absolute;
-    top: 370px;
-}
-
-#img_senha{
-    position: absolute;
-    left: 53px; 
-    top: 422px;
-}
-
-#olho_aberto{
-    position: absolute;
-    left: 240px; 
-    top: 420px;
-}
-
-ion-checkbox {
-    --size: 22px;
-    --background: #D9D9D9;
-    position: absolute;
-    left: 242px; 
-    top: 421px;
-    opacity: 0;
-
-}
-
-ion-checkbox::part(container) {
-    border-radius: 6px;
-    border: 2px solid ;
-}
-
-#input_senha{
-    position: absolute;
-    left: 80px; 
-    top: 403px;
-    width: 170px;
-    font-family: 'Inika';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 20px;
-    line-height: 39px;
-
-}
-
-#lines2{
-    position: absolute;
-    width: 216px;
-    left: 53px;
-    top: 445px;
-    border: 1px solid #000000;  
-}
-
-// confirmar
-#botao{
-    box-sizing: border-box;
+  
+  #botao {
+    margin-top: 10%;
+    width: 60%;
     font-family: 'Inika';
     font-style: normal;
     font-weight: 700;
     font-size: 25px;
-    position: absolute;
-    width: 215px;
-    height: 69px;
-    left: 50px;
-    top: 580px;
     background: #323131;
     border: 2px solid #FFFFFF;
     border-radius: 30px;
-}
+  }
+  
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30%;
+  }
+  
+  .logo {
+    max-width: 80%;
+  }
 
 // voltar
 .voltar{

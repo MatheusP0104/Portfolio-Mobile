@@ -14,28 +14,21 @@
 
       <div class="user-container">
         <!-- Usuário -->
-        <ion-item class="usuario" color="--ion-background-color: #D9D9D9" lines="none">
-          <ion-label>Entre com seu E-mail</ion-label>
-        </ion-item>
-        
+      
         <ion-item class="inp_user" color="--ion-background-color: #D9D9D9" lines="none">  
-          <img src="assets/imagens/user.png" alt="Usuário">
-          <ion-input class="input_user" id="email" required></ion-input>
+          <img src="assets/imagens/email.png" alt="Usuário">
+          <ion-input placeholder="Email" class="input_user" id="email" required></ion-input>
         </ion-item>
       </div>
 
       <!-- Senha -->
       <div class="senha-container">
-        <ion-item class="senhas" color="--ion-background-color: #D9D9D9" lines="none">
-          <ion-label>Senha</ion-label>
-        </ion-item>
-      
         <ion-item class="inp_senha" color="--ion-background-color: #D9D9D9" lines="none">  
           <img class="img_senha" src="assets/imagens/senha.png" alt="Senha">
-          <ion-input class="input_senha" id="senha" type="{{ showPassword ? 'text' : 'password' }}"  [(ngModel)]="password" required></ion-input>
+          <ion-input placeholder="Senha" class="input_senha" id="senha" type="{{ showPassword ? 'text' : 'password' }}"  [(ngModel)]="password" required></ion-input>
           <ion-icon class="img_olho" name="{{ showPassword ? 'eye-off' : 'eye' }}" (click)="showPassword = !showPassword"></ion-icon>
         </ion-item>
-        <p>Esqueceu sua senha?<a>Clique Aqui</a></p>
+        <p>Esqueceu sua senha?<a routerLink="/recuperar-senha">Clique Aqui</a></p>
       </div>
     </div>
     <ion-button id="botao" color="--ion-background-color:#323131;" (click)="login()">Confirmar</ion-button>

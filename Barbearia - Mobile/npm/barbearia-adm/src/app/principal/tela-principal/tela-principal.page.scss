@@ -6,20 +6,11 @@
 }
 
 .logo{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo ion-icon{
-    width: 32px;
-    height: 32px;
-    cursor: pointer;
-}
-
-.logo img{
-    width: 42px;
-    height: 42px;
+    position: relative;
+    margin-top: 10px;
+    left: 5rem;
+    width: 65px;
+    height: 65px;
 }
 
 .buscar{
@@ -33,10 +24,12 @@
 
 ion-menu{
     --ion-background-color: #fff;
+    cursor: pointer;
 }
 
 #menu{
     color: black;
+
     height: 50px;
 }
 
@@ -70,6 +63,7 @@ ion-menu{
     font-family: 'Inika';
     font-weight: 600;
     font-size: 25px;
+    width: 250px;
 }
 
 .lines1{
@@ -361,3 +355,4 @@ ion-icon{
 .linha{
     margin-left: 20px;
 }
+

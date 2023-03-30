@@ -15,34 +15,14 @@ export class TelaLoginPage implements OnInit {
   email: any
   senha : any
   
+  
 
   constructor(
     public router: Router,
     private auth: AngularFireAuth,
-    private alertController: AlertController
     ) { }
 
-    async presentAlert() {
-      const alert = await this.alertController.create({
-        header: 'Bem-Vindo',
-        subHeader: 'Falta pouco para concluir seu Cadastro',
-        message: 'Por Favor insira um nome de usuário e um número de telefone válido',
-        buttons: [
-          {
-            text:'Mais Tarde'
-        },
-
-         {
-          text:'Ir para o Perfil',
-          handler: () => {
-            this.router.navigateByUrl('/tela-perfil')
-          }
-         } 
-      ],
-      });
-  
-      await alert.present();
-    }
+   
 
   ngOnInit() {}
 
@@ -57,7 +37,6 @@ export class TelaLoginPage implements OnInit {
     // Signed up
     if (userCredential.user) {
       this.router.navigateByUrl('/tela-principal')
-      this.presentAlert()
     }
   })
   .catch((error) => {
@@ -68,5 +47,6 @@ export class TelaLoginPage implements OnInit {
   }
 
   
+
 
 }
