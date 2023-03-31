@@ -1,11 +1,19 @@
-<ion-header>
+<ion-header mode="ios">
   <ion-toolbar>
-    <ion-title>Editar Serviço de Depilação</ion-title>
+    <ion-button mode="ios" class="voltar" color="--ion-background-color:#323131;" routerLink="/tela-depilacao" (click)="tela()">
+      <img id="img_voltar" src="assets/imagens/voltar.png" alt="">
+    </ion-button>
+    <img class="logo" src="assets/imagens/logo.png" alt="">
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="body">
-  <div class="ion-padding">
+  <div class="titulo-container">
+    <h1>Editar Dados</h1>
+    <div class="line"></div>
+  </div>
+
+  <div class="inputs-container">
   <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
     <div class="ion-padding"  mode="md">
       <ion-item fill="outline">
@@ -23,8 +31,9 @@
         <ion-input formControlName="valor" id="valor" type="number" placeholder="Digite o novo valor"></ion-input>
       </ion-item>
 
-      <ion-button type="submit" expand="block">Salvar Dados</ion-button>
-      <ion-button color="danger" expand="block">Deletar Dados</ion-button>
+      <div class="salvar" mode="ios">
+        <ion-button color=" --ion-background-color: #fff;" type="submit">Salvar</ion-button>
+      </div>
     </div>
   </form>
 </div>

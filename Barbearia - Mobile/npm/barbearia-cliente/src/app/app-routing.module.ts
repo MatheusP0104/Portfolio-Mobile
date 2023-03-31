@@ -20,10 +20,6 @@ const routes: Routes = [
     loadChildren: () => import('./update-user/update-todo.module').then( m => m.UpdateTodoPageModule)
   },
   {
-    path: 'list-todo',
-    loadChildren: () => import('./list-todo/list-todo.module').then( m => m.ListTodoPageModule)
-  },
-  {
     path: 'tela-login',
     loadChildren: () => import('./login/tela-login/tela-login.module').then( m => m.TelaLoginPageModule)
   },
@@ -79,10 +75,15 @@ const routes: Routes = [
   {
     path: 'verificar-email',
     loadChildren: () => import('./verificar-email/verificar-email.module').then( m => m.VerificarEmailPageModule)
-  },  {
+  },
+  {
     path: 'recuperar-senha',
     loadChildren: () => import('./recuperar-senha/recuperar-senha.module').then( m => m.RecuperarSenhaPageModule)
+  },  {
+    path: 'ver-agenda',
+    loadChildren: () => import('./ver-agenda/ver-agenda.module').then( m => m.VerAgendaPageModule)
   },
+
 
 
 

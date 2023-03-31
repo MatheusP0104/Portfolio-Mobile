@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button mode="ios" class="voltar" color="--ion-background-color:#323131;" routerLink="/tela-agenda">
+      <img id="img_voltar" src="assets/imagens/voltar.png" alt="">
+    </ion-button>
+    <img class="logo" src="assets/imagens/logo.png" alt="">
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="body">
+  <div class="title-container"> 
+    <h1>Agendamentos Recentes</h1>
+    <div class="line"></div>
+  </div>
+
+  <div class="agenda-container">
+    <!-- Nome User -->
+    <ion-item lines="none">
+      <ion-label>Nome:<ion-label id="nome"></ion-label></ion-label>
+    </ion-item>
+
+    <!-- Data -->
+    <ion-item lines="none">
+      <ion-label>Data:<ion-label id="data"></ion-label></ion-label>
+    </ion-item>
+
+    <!-- Horario -->
+    <ion-item lines="none">
+      <ion-label>Horário:<ion-label id="hora"></ion-label></ion-label>
+    </ion-item>
+
+    <!-- Servico Cabelo -->
+    <ion-item lines="none">
+      <ion-label>Corte de Cabelo:<ion-label id="servicoCabelo"></ion-label></ion-label>
+    </ion-item>
+
+    <!-- Servico barba -->
+    <ion-item lines="none">
+      <ion-label>Corte de Barba:<ion-label id="servicoBarba"></ion-label></ion-label>
+    </ion-item>
+
+    <!-- Servico tintura -->
+    <ion-item lines="none">
+      <ion-label>Tipo de Tintura:<ion-label id="servicoTintura"></ion-label></ion-label>
+    </ion-item>
+
+    <!-- Servico Depilacao -->
+    <ion-item lines="none">
+      <ion-label>Tipo de Depilação:<ion-label id="servicoDepilacao"></ion-label></ion-label>
+    </ion-item>
+
+    <!-- Servico Hidratacao -->
+    <ion-item lines="none" >
+      <ion-label>Tipo de Hidratação:<ion-label id="servicohidra"></ion-label></ion-label>
+    </ion-item>
+
+    <!-- Pagamento -->
+    <ion-item lines="none" >
+      <ion-label>Forma de Pagamento:<ion-label id="pagamento"></ion-label></ion-label>
+    </ion-item>
+  </div>
+
+  <div class="agendar">
+    <ion-button color=" --ion-background-color: #fff;" (click)="deletarAgenda()">Cancelar Agendamento</ion-button>
+  </div>
+
+</ion-content>

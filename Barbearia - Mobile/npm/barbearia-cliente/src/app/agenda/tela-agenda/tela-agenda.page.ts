@@ -5,6 +5,10 @@ import { Servicos } from 'src/app/models/servicos';
 import { Users } from 'src/app/models/users';
 import { CrudService } from 'src/app/services/crud.service';
 import { ActivatedRoute } from '@angular/router';
+import { FormControl } from '@angular/forms';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
 
 
 
@@ -15,6 +19,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class TelaAgendaPage implements OnInit {
   dataHora: string;
+  UserData: any
+  userName:string
   servicoCabelo: string = 'Nenhum';
   servicoBarba: string = 'Nenhum';
   servicoTintura: string = 'Nenhum';
@@ -23,7 +29,8 @@ export class TelaAgendaPage implements OnInit {
   pagamento: string;
   mensagem: string;
   saida: string;
-  id : any
+  id: any
+  currentDate : FormControl;
   
 
   ConsultasCabelo : Servicos[];
@@ -39,8 +46,12 @@ export class TelaAgendaPage implements OnInit {
   constructor(
     private service: CrudService,
     private alertController: AlertController,
-    private route : ActivatedRoute
-  ) {}
+    private route: ActivatedRoute,
+    private afsAuth: AngularFireAuth,
+    private firestore: AngularFirestore
+  ) {
+    this.currentDate = new FormControl(new Date().toISOString());
+  }
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -53,17 +64,12 @@ export class TelaAgendaPage implements OnInit {
     await alert.present();
   }
 
-  ngOnInit() {
-    // Consulta do Usuário
-    this.service.getUser().subscribe((res) => {
-      this.ConsultasUser = res.map((t) => {
-        return {
-          id: t.payload.doc.id,
-          ...(t.payload.doc.data() as Users)
-        }
-      })
-    })
-
+  async ngOnInit() {
+    const uid = (await this.afsAuth.currentUser).uid;
+      const userDoc = await this.firestore.collection('Users').doc(uid).get().toPromise();
+       this.UserData = userDoc.data();
+    this.userName = this.UserData.nome
+    
     // Consulta do Cabelo
     this.service.getServicoCabelo().subscribe((res) => {
       this.ConsultasCabelo = res.map((t) => {
@@ -117,7 +123,7 @@ export class TelaAgendaPage implements OnInit {
   }
 
 
-  onSubmit(){
+ async onSubmit(){
       if (this.dataHora && this.servicoCabelo != 'Nenhum' || this.servicoBarba !='Nenhum' || this.servicoTintura !='Nenhum' || this.servicoDepilacao!='Nenhum' || this.servicoHidratacao !='Nenhum'){
           const agendamento: Agendamento = {
             data: this.dataHora.substr(0, 10),
@@ -128,8 +134,9 @@ export class TelaAgendaPage implements OnInit {
             servicoDepilacao: this.servicoDepilacao.substr(0, 20),
             servicoHidratacao: this.servicoHidratacao.substr(0, 20),
             pagamento: this.pagamento.substr(0, 20),
+            nomeUser: this.userName = this.UserData.nome
           };
-        this.service.createAgenda(agendamento).then(() => {
+       await this.firestore.collection('Agendamento').doc((await this.afsAuth.currentUser).uid).set(agendamento).then(() => {
           this.dataHora = '';
           this.pagamento = '';
           this.editMode = 5

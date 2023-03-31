@@ -17,7 +17,7 @@
     </div>
 
     <div class="calendario">
-      <ion-datetime display-format="DD/MM/YYYY HH:mm" picker-format="DD/MM/YYYY HH:mm" [(ngModel)]="dataHora" name="dataHora">
+      <ion-datetime display-format="DD/MM/YYYY HH:mm" picker-format="DD/MM/YYYY HH:mm" [(ngModel)]="dataHora" name="dataHora" [(ngModel)]="currentDate.value">
         <span slot="time-label">Selecione o Horário:</span>
       </ion-datetime>
       <div class="line"></div>
@@ -25,6 +25,10 @@
 
     <div class="agendar">
       <ion-button color=" --ion-background-color: #fff;" (click)="edit()">Confirmar</ion-button>
+    </div>
+
+    <div class="agendar">
+      <ion-button color=" --ion-background-color: #fff;" routerLink="/ver-agenda">Ver meus Agendamentos</ion-button>
     </div>
   </div>
   
@@ -37,11 +41,11 @@
       <div class="line"></div>
     </div>
     
-    <ion-item *ngFor="let consulta of ConsultasUser">
+    <ion-item>
       <ion-avatar slot="start">
         <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
       </ion-avatar>
-      <ion-label>{{consulta.nome}}</ion-label>
+      <ion-label>{{userName}}</ion-label>
     </ion-item>
     <label class="lobelid" >#00385</label>
     <ion-list>

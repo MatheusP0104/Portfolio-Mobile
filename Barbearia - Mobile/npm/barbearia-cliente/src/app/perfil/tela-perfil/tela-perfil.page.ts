@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { AlertController } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 
 
@@ -19,16 +19,31 @@ export class TelaPerfilPage implements OnInit {
   userTel: any
   icone: string = 'create-outline'
   tipo : string
+  UserData: any
   public editMode = false
+  public editedName: string;
+  public editedEmail: string;
+  public editedSenha: string;
+  public editedTel: string;
 
-  constructor(private afAuth: AngularFireAuth, private router: Router, private alertController: AlertController, private route: ActivatedRoute) { 
-    this.afAuth.authState.subscribe(user =>{
-      if(user){
-        this.userEmail = user.email
-        this.userName = user.displayName
-      }
-    })
+  constructor(
+    private afAuth: AngularFireAuth,
+    private router: Router,
+    private alertController: AlertController,
+    private firestore: AngularFirestore
+    ) {}
+    
+    async ngOnInit() {
+      const uid = (await this.afAuth.currentUser).uid;
+      const userDoc = await this.firestore.collection('Users').doc(uid).get().toPromise();
+       this.UserData = userDoc.data();
+       
+       this.userName = this.UserData.nome
+       this.userEmail = this.UserData.email
+       this.userSenha = this.UserData.senha
+       this.userTel = this.UserData.tel
   }
+  
 
   async deleteAccount(): Promise<void> {
     const user = await this.afAuth.currentUser;
@@ -70,17 +85,29 @@ export class TelaPerfilPage implements OnInit {
         break;
         }
       case true:
-        if(this.icone === 'checkbox-outline')
-          this.editMode = false;
+        if (this.icone === 'checkbox-outline')
+        this.UpdateUser()
+        this.editMode = false;
         this.tipo = 'submit'
         this.icone = 'create-outline'
         break;
     }
   }
 
-  ngOnInit() {
-    
+  async UpdateUser() {
+    const uid = (await this.afAuth.currentUser).uid;
+    try {
+      await this.firestore.collection('Users').doc(uid).update({
+        nome: this.userName,
+        email: this.userEmail,
+        senha: this.userSenha,
+        tel: this.userTel
+      });
+      this.editMode = false;
+      this.icone = 'create-outline';
+    } catch (error) {
+      console.error(error);
+    }
   }
-
-
 }
+

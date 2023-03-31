@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MenuController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth'
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
+
+
 
 
 
@@ -15,21 +19,22 @@ export class TelaPrincipalPage implements OnInit {
   userEmail: string
   isLoggedIn:boolean
   private userDataKey = 'user_data';
+  UserData: any
  
 
   constructor(
     private menuController: MenuController, 
     private afAuth: AngularFireAuth,
-    private router: Router) {
-      this.afAuth.authState.subscribe(user =>{
-        if(user){
-          this.userEmail = user.displayName
-        }
-      })
-     }
+    private router: Router,
+    private firestore: AngularFirestore
+  ) {}
 
-  ngOnInit() {
+ async ngOnInit() {
+  const uid = (await this.afAuth.currentUser).uid;
+  const userDoc = await this.firestore.collection('Admin').doc(uid).get().toPromise();
+   this.UserData = userDoc.data();
    
+   this.userEmail = this.UserData.nome
   }
 
   onClick() {

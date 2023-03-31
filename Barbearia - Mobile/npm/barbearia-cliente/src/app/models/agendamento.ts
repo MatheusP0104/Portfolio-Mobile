@@ -9,5 +9,5 @@ export class Agendamento {
     servicoDepilacao : string;
     servicoHidratacao : string;
     pagamento : string;
-    // nomeUser : Users[]
+    nomeUser : string
 }

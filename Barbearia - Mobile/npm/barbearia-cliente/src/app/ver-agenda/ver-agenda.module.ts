@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ListTodoPageRoutingModule } from './list-todo-routing.module';
+import { VerAgendaPageRoutingModule } from './ver-agenda-routing.module';
 
-import { ListTodoPage } from './list-todo.page';
+import { VerAgendaPage } from './ver-agenda.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ListTodoPageRoutingModule
+    VerAgendaPageRoutingModule
   ],
-  declarations: [ListTodoPage]
+  declarations: [VerAgendaPage]
 })
-export class ListTodoPageModule {}
+export class VerAgendaPageModule {}

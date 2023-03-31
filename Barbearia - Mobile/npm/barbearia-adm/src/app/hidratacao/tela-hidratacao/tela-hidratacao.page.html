@@ -18,7 +18,7 @@
     </div>
     
     <div class="itens" *ngFor="let consulta of Consultas">
-      <ion-item mode="ios" button detail-icon="false" lines="full" class="field" [routerLink]="['/update-depilacao/', consulta.id]">
+      <ion-item mode="ios" button detail-icon="false" lines="full" class="field" [routerLink]="['/update-hidratacao/', consulta.id]">
         <ion-label> 
           <h3>{{consulta.nome}}</h3>
           <h5>{{consulta.descricao}}</h5>

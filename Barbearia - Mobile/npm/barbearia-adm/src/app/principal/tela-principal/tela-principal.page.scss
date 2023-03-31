@@ -46,6 +46,19 @@ ion-menu{
     line-height: 39px;
 }
 
+.notif{
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    position: relative;
+}
+
+.notif ion-icon{
+    position: absolute;
+    width: 32px;
+    height: 32px;
+}
+
 .userP{
     position: absolute;
     width: 76px;

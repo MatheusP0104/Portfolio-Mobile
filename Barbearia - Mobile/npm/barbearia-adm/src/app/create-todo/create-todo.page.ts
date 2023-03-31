@@ -3,6 +3,9 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { NavController } from '@ionic/angular';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+
+
 
 
 
@@ -16,17 +19,13 @@ import { NavController } from '@ionic/angular';
 export class CreateTodoPage implements OnInit {
   password: string = '';
   showPassword: boolean = false;
-  email: any
-  senha : any
-  nome: any
-  tel: any
-  phoneProvider: any
+  public user: any = {}
  
   constructor(
     private auth: AngularFireAuth,
     private router : Router,
     private alertController: AlertController,
-    private navController: NavController
+    private angular: AngularFirestore
   ) { }
 
   async presentAlert() {
@@ -34,37 +33,33 @@ export class CreateTodoPage implements OnInit {
       header: 'Verificar Email',
       subHeader: 'Olá',
       message: 'Enviamos um Email de Verificação para você',
-      buttons: ['Voltar'],
+      buttons: ['Ok'],
     });
 
     await alert.present();
   }
 
 
-  Cadastrar(){
-    this.email = ((document.getElementById("email") as HTMLInputElement).value )
-    this.senha = ((document.getElementById("senha") as HTMLInputElement).value )
-    this.nome = ((document.getElementById("nome") as HTMLInputElement).value )
-    this.tel = ((document.getElementById("tel") as HTMLInputElement).value )
-    
-    
-    this.auth.createUserWithEmailAndPassword(this.email, this.senha).then(userCredential => {
-      userCredential.user.updateProfile({displayName: this.nome})
-    // Signed in
-    if (userCredential.user) {
-      userCredential.user.sendEmailVerification()
+ async Cadastrar(){
+   try {
+    const newUser = await this.auth.createUserWithEmailAndPassword(this.user.email, this.user.senha)
+     await this.angular.collection('Admin').doc(newUser.user.uid).set(this.user)
+     if (this.user) {
+      newUser.user.sendEmailVerification()
       this.presentAlert()
       this.router.navigateByUrl('/tela-login')
-    } else {
-      window.alert("Não foi possivel criar sua conta")
+     }
+     
+   } catch (error) {
+     console.log(error)
     }
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    window.alert(errorMessage)
-  });
+    
+    
+    // Signed in
+      
+   
   }
+  
 
   ngOnInit() {}
 

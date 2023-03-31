@@ -16,7 +16,7 @@
         <!-- Usuário -->
         <ion-item class="inp_nome" color="--ion-background-color: #D9D9D9" lines="none">  
           <img src="assets/imagens/user.png" alt="Usuário">
-          <ion-input placeholder="Nome" class="input_nome" id="nome" required></ion-input>
+          <ion-input placeholder="Nome" class="input_nome" [(ngModel)]="user.nome" required></ion-input>
         </ion-item>
       </div>
 
@@ -24,7 +24,7 @@
         <!-- Email -->
         <ion-item class="inp_user" color="--ion-background-color: #D9D9D9" lines="none">  
           <img src="assets/imagens/email.png" alt="Usuário">
-          <ion-input placeholder="Email" class="input_user" id="email" required></ion-input>
+          <ion-input placeholder="Email" class="input_user" [(ngModel)]="user.email" required></ion-input>
         </ion-item>
       </div>
 
@@ -32,7 +32,7 @@
       <div class="senha-container">
         <ion-item class="inp_senha" color="--ion-background-color: #D9D9D9" lines="none">  
           <img class="img_senha" src="assets/imagens/senha.png" alt="Senha">
-          <ion-input placeholder="Senha" class="input_senha" id="senha" type="{{ showPassword ? 'text' : 'password' }}"  [(ngModel)]="password" required></ion-input>
+          <ion-input placeholder="Senha" class="input_senha"  type="{{ showPassword ? 'text' : 'password' }}"  [(ngModel)]="password" [(ngModel)]="user.senha" required></ion-input>
           <ion-icon class="img_olho" name="{{ showPassword ? 'eye-off' : 'eye' }}" (click)="showPassword = !showPassword"></ion-icon>
         </ion-item>
       </div>
@@ -41,7 +41,7 @@
       <div class="tel-container">
         <ion-item class="inp_tel" color="--ion-background-color: #D9D9D9" lines="none">  
           <img src="assets/imagens/telefone.png" alt="Senha">
-          <ion-input placeholder="Telefone" class="input_tel" id="tel" required></ion-input>
+          <ion-input placeholder="Telefone" class="input_tel" [(ngModel)]="user.tel" required></ion-input>
         </ion-item>
       </div>
     </div>

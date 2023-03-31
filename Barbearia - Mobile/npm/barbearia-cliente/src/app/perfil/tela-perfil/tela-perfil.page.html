@@ -1,37 +1,63 @@
-<div *ngIf="!editMode">
 <ion-header mode="ios">
   <ion-toolbar>
     <ion-button class="voltar" color="--ion-background-color:#323131;" routerLink="/tela-principal">
       <img id="img_voltar" src="assets/imagens/voltar.png" alt="">
     </ion-button>
 
-    <ion-button class="bt_add" (click)="edit()" color="--ion-background-color:#323131;">
+    <ion-button *ngIf="!editMode" class="bt_add" (click)="edit()" color="--ion-background-color:#323131;">
       <ion-icon class="icons" [name]="icone"></ion-icon>
     </ion-button>
 
-    <ion-button class="bt_del" (click)="deleteAccount()" color="--ion-background-color:#323131;">
+    <ion-button *ngIf="editMode" class="bt_add" (click)="UpdateUser()" color="--ion-background-color:#323131;">
+      <ion-icon class="icons" [name]="icone"></ion-icon>
+    </ion-button>
+
+    <ion-button *ngIf="editMode" class="bt_add" (click)="cancelar()" color="--ion-background-color:#323131;">
+      <ion-icon class="icons" name="close-outline"></ion-icon>
+    </ion-button>
+
+    <ion-button *ngIf="!editMode" class="bt_del" (click)="deleteAccount()" color="--ion-background-color:#323131;">
       <ion-icon class="icons" name="trash-outline"></ion-icon>
     </ion-button>
 
   </ion-toolbar>
 </ion-header>
-</div>
 
 <ion-content class="body" mode="ios"> 
-    <img class="userP" src="assets/imagens/userPerfil.png" alt="Foto_Perfil">
-    <div class="circle">
-      <ion-icon class="camera" name="camera-outline"></ion-icon>
-    </div>
+  <img class="userP" src="assets/imagens/userPerfil.png" alt="Foto_Perfil">
+  <div class="circle">
+    <ion-icon class="camera" name="camera-outline"></ion-icon>
+  </div>
 
-    <!-- Nome --> 
-    <ion-item class="perfil" lines="none">
-      <ion-label class="titulo" position="floating">Nome:{{userName}}</ion-label>
-      <img src="assets/imagens/user.png" alt="">
-    </ion-item>
+  <!-- Nome --> 
+  <ion-item class="perfil" lines="none">
+    <ion-label class="titulo" position="floating">Nome: <ion-text *ngIf="!editMode">{{ userName }}</ion-text></ion-label>
+    <ion-input *ngIf="editMode" type="text" [(ngModel)]="userName"></ion-input>
+   
+    <img src="assets/imagens/user.png" alt="">
+  </ion-item>
 
-    <!-- Email -->
-    <ion-item class="perfil" lines="none">
-      <ion-label class="titulo" position="floating">Email: {{userEmail}}</ion-label>
-      <img src="assets/imagens/email.png" alt="">
-    </ion-item>
+  <!-- Email -->
+  <ion-item class="perfil" lines="none">
+    <ion-label class="titulo" position="floating">Email:<ion-text *ngIf="!editMode">{{ userEmail }}</ion-text></ion-label>
+    <ion-input *ngIf="editMode" type="email" [(ngModel)]="userEmail"></ion-input>
+    
+    <img src="assets/imagens/email.png" alt="">
+  </ion-item>
+
+  <!-- Senha -->
+  <ion-item class="perfil" lines="none">
+    <ion-label class="titulo" position="floating">Senha:<ion-text *ngIf="!editMode">{{ userSenha }}</ion-text></ion-label>
+    <ion-input *ngIf="editMode" type="password" [(ngModel)]="userSenha"></ion-input>
+    
+    <img src="assets/imagens/senha.png" alt="">
+  </ion-item>
+
+  <!-- Tel -->
+  <ion-item class="perfil" lines="none">
+    <ion-label class="titulo" position="floating">Telefone:<ion-text *ngIf="!editMode">{{ userTel }}</ion-text></ion-label>
+    <ion-input *ngIf="editMode" type="tel" [(ngModel)]="userTel"></ion-input>
+    
+    <img src="assets/imagens/telefone.png" alt="">
+  </ion-item>
 </ion-content>

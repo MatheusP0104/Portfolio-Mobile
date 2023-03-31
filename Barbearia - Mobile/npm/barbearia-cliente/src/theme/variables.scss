@@ -79,6 +79,26 @@
 
 }
 
+// Disable dark mode by default
+$dark-mode-enabled: false;
+
+// Set the default mode to light
+$colors: (
+  primary: #3880ff,
+  secondary: #0cd1e8,
+  tertiary: #7044ff,
+  success: #10dc60,
+  warning: #ffce00,
+  danger: #f04141,
+  light: #f4f4f4,
+  medium: #989aa2,
+  dark: #222428
+);
+
+// Set the default mode to light
+$ionic-color-mode: light;
+
+
 
 
 

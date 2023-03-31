@@ -1,13 +1,14 @@
 .body{
     --ion-background-color: #fff;
+    font-family: 'Inika';
 }
 
 .logo{
     position: relative;
     margin-top: 10px;
-    left: 8em;
-    width: 55px;
-    height: 55px;
+    left: 7.3em;
+    width: 75px;
+    height: 75px;
 }
 
 .voltar{
@@ -18,25 +19,14 @@
     height: 82px;
 }
 
-.inputs-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20%;
-}
-
-.inputs-container ion-item{
-    padding-bottom: 10%;
-}
-
-.titulo-container{
+.title-container{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
 
-.titulo-container h1{
+.title-container h1{
     font-family: 'Inika';
     font-weight: 600;
 }
@@ -46,22 +36,23 @@
     width: 90%;
 }
 
-.salvar{
+.agendar{
     display: flex;
     justify-content: center;
     align-items: center;    
 }
 
-.salvar ion-button{
+.agendar ion-button{
     color: #000;
     border-radius: 30px;
     border: 1px solid #000;
     width: 80%;
     font-family: 'Inika';
     font-weight: 800;
+    margin-top: 40px; 
 }
 
-.salvar ion-button:hover{
+.agendar ion-button:hover{
     color: #000;
     transition: 0.5s ease;
     background-color: #a8a8a8;
