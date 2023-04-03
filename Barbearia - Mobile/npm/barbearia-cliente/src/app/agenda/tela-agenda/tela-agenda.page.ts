@@ -7,7 +7,7 @@ import { CrudService } from 'src/app/services/crud.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 
 
 
@@ -18,6 +18,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
   styleUrls: ['./tela-agenda.page.scss'],
 })
 export class TelaAgendaPage implements OnInit {
+  private agendamentoCollection: AngularFirestoreCollection<Agendamento>;
   dataHora: string;
   UserData: any
   userName:string
@@ -50,7 +51,7 @@ export class TelaAgendaPage implements OnInit {
     private afsAuth: AngularFireAuth,
     private firestore: AngularFirestore
   ) {
-    this.currentDate = new FormControl(new Date().toISOString());
+    this.agendamentoCollection = this.firestore.collection<Agendamento>('Agendamento');
   }
 
   async presentAlert() {
@@ -149,6 +150,22 @@ export class TelaAgendaPage implements OnInit {
     }
 
     }
+
+   public async verificarAgendamento(data: string, horario: string) {
+    const querySnapshot = await this.agendamentoCollection
+      .ref.where('data', '==', data)
+      .where('horario', '==', horario)
+      .get();
+      
+    if(!querySnapshot.empty){
+      this.mensagem = 'O dia ou o horário não estão disponiveis'
+      this.saida = 'Por Favor escolha outra data'
+      this.presentAlert()
+    }else{
+      this.editMode = 2
+    }
+  }
+
 
   edit(){
     switch (this.editMode){

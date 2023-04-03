@@ -31,7 +31,7 @@ export class CreateTodoPage implements OnInit {
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Verificar Email',
-      subHeader: 'Olá',
+      subHeader: 'Olá,' + this.user.email,
       message: 'Enviamos um Email de Verificação para você',
       buttons: ['Ok'],
     });

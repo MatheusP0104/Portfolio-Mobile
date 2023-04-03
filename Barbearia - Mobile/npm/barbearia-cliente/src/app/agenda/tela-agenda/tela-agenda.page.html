@@ -17,14 +17,14 @@
     </div>
 
     <div class="calendario">
-      <ion-datetime display-format="DD/MM/YYYY HH:mm" picker-format="DD/MM/YYYY HH:mm" [(ngModel)]="dataHora" name="dataHora" [(ngModel)]="currentDate.value">
+      <ion-datetime display-format="DD/MM/YYYY HH:mm" picker-format="DD/MM/YYYY HH:mm" [(ngModel)]="dataHora" name="dataHora">
         <span slot="time-label">Selecione o Horário:</span>
       </ion-datetime>
       <div class="line"></div>
     </div>
 
     <div class="agendar">
-      <ion-button color=" --ion-background-color: #fff;" (click)="edit()">Confirmar</ion-button>
+      <ion-button color=" --ion-background-color: #fff;" (click)="verificarAgendamento()">Confirmar</ion-button>
     </div>
 
     <div class="agendar">

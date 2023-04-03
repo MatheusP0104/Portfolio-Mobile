@@ -13,9 +13,10 @@
 <ion-content class="body">
 
   <div class="itens" *ngFor="let consulta of Consultas">
-    <ion-item mode="ios" button detail-icon="false" lines="full" class="field" [routerLink]="['/lista-agenda/', consulta.id]"> 
+    <ion-item mode="ios" button detail-icon="false" lines="full" class="field"> 
     <img class="userP" src="assets/imagens/userPerfil.png" alt="Foto_Perfil">
     <ion-label> 
+      <h5>Nome: {{consulta.nomeUser }}</h5>
       <h5>Data: {{consulta.data}}</h5>
       <h5>Horário: {{consulta.horario}}</h5>
       <h5>Cabelo: {{consulta.servicoCabelo}}</h5>
@@ -24,7 +25,6 @@
       <h5>Depilação: {{consulta.servicoDepilacao}}</h5>
       <h5>Hidratação: {{consulta.servicoHidratacao}}</h5>
       <h5>Pagamento: {{consulta.pagamento}}</h5>
-      <h5>Nome: {{consulta.nomeUser }}</h5>
     </ion-label>
   </ion-item>
 </div>

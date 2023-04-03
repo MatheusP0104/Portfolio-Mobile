@@ -33,46 +33,42 @@ ion-menu{
     height: 50px;
 }
 
-.bemVindo{
-    position: absolute;
-    width: 249px;
-    height: 78px;
-    left: 20px;
-    top: 20px;
-    font-family: 'Inika';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 39px;
+.info-user3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.userP{
-    position: absolute;
-    width: 76px;
-    height: 76px;
-    left: 230px;
-    top: 20px;
-}
-
-.select{
-    position: relative;
-    top: 60px;
-}
-
-.select ion-item{
-    font-family: 'Inika';
-    font-weight: 600;
-    font-size: 25px;
-    width: 250px;
-}
-
-.lines1{
-    position: absolute;
-    width: 280px;
-    height: 0px;
-    left: 17px;
-    top: 110px;
+.info-user3 .lines1{
+    margin-top: auto;
+    width: 90%;
     border: 1px solid #000000;
+}
+
+.info-user1{
+    display: flex;
+    justify-content: center;
+
+
+    ion-label {
+        text-align: left;
+        font-family: 'Inika';
+        font-size: 22px;
+        font-weight: 600;
+        padding: 20px;
+      }    
+      img {
+        max-width: 100%;
+        height: auto;
+        text-align: right;
+      }
+}
+
+.select ion-item{ 
+    margin-left: 5%;
+    font-family: 'Inika';
+    font-size: 22px;
+    font-weight: 600;
 }
 
 .servicos{
@@ -246,13 +242,7 @@ ion-menu{
     width: 19px;
 }
 
-.telefone{
 
-    letter-spacing: 0;
-    line-height: normal;
-    min-height: 42px;
-    min-width: 134px;
-}
 
 .line{
 

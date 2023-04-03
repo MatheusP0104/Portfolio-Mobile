@@ -6,6 +6,16 @@
     height: 65px;
 }
 
+.aviso{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.aviso h1{
+    font-family: 'Inika';
+    font-weight: 600;
+}
+
 .voltar{
     position: absolute;
     top: 0px;
