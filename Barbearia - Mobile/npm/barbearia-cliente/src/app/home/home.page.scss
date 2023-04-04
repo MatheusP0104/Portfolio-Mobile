@@ -8,5 +8,23 @@
     font-weight: 700;
     font-size: 20px;
     line-height: 26px;
+}
 
+
+.body{
+    --background: #C9C9C9;
+    
+}
+
+.logo{
+    margin-top: 50%;
+}
+
+ion-toolbar, ion-header{
+    --background: #c9c9c9;
+}
+
+.body ion-button{
+    --background: #202020;
+    color: #fff;
 }

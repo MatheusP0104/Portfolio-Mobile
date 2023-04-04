@@ -73,13 +73,10 @@ const routes: Routes = [
     loadChildren: () => import('./redesSociais/tela-rede-social/tela-rede-social.module').then( m => m.TelaRedeSocialPageModule)
   },
   {
-    path: 'verificar-email',
-    loadChildren: () => import('./verificar-email/verificar-email.module').then( m => m.VerificarEmailPageModule)
-  },
-  {
     path: 'recuperar-senha',
     loadChildren: () => import('./recuperar-senha/recuperar-senha.module').then( m => m.RecuperarSenhaPageModule)
-  },  {
+  },
+  {
     path: 'ver-agenda',
     loadChildren: () => import('./ver-agenda/ver-agenda.module').then( m => m.VerAgendaPageModule)
   },
