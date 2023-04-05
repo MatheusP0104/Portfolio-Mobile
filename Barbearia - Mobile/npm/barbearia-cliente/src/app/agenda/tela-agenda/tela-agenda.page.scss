@@ -42,8 +42,14 @@
 }
 
 ion-datetime{
-    width: 99vw;
+    width: 100vw;
+    --background: #d9d9d9;
 }
+
+.my-red-option {
+    background-color: red;
+  }
+
 
 .calendario .line{
     margin-top: 10px;

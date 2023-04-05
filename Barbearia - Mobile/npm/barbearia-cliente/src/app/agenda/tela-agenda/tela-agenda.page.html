@@ -24,7 +24,7 @@
     </div>
 
     <div class="agendar">
-      <ion-button color=" --ion-background-color: #fff;" (click)="verificarAgendamento()">Confirmar</ion-button>
+      <ion-button color=" --ion-background-color: #fff;" (click)="edit()">Confirmar</ion-button>
     </div>
 
     <div class="agendar">
@@ -52,8 +52,8 @@
       <h1 class="Titonlo">Cabelo</h1>
       <ion-item>
         <ion-select placeholder="Selecione o Cabelo" [(ngModel)]="servicoCabelo" name="servicoCabelo">
-          <ion-select-option value="Nenhum">Nenhum</ion-select-option>
-          <ion-select-option *ngFor="let consulta of ConsultasCabelo">{{consulta.nome}}</ion-select-option>
+          <ion-select-option value="Nenhum" class="my-red-option">Nenhum</ion-select-option>
+          <ion-select-option *ngFor="let consulta of ConsultasCabelo" class="my-red-option">{{consulta.nome}}</ion-select-option>
         </ion-select>
       </ion-item>
       

@@ -59,6 +59,7 @@ export class TelaAgendaPage implements OnInit {
       header: 'Alerta!',
       subHeader: this.mensagem,
       message: this.saida,
+      cssClass: 'custom-alert',
       buttons: ['Voltar'],
     });
 
