@@ -6,12 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tela-agenda.page.scss'],
 })
 export class TelaAgendaPage implements OnInit {
-  customPopoverOptions = {
-    header: 'escolha o serviço',
-    subHeader: 'agendamentos rapidos',
-    message: '',
-  };
-
+ 
   public editMode = 1
 
   constructor() { }

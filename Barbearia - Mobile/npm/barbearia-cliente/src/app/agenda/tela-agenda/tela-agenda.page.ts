@@ -8,8 +8,13 @@ import { ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 
+interface AgendamentoComId extends Agendamento {
+  id: string;
+}
 
 
 @Component({
@@ -17,9 +22,10 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
   templateUrl: './tela-agenda.page.html',
   styleUrls: ['./tela-agenda.page.scss'],
 })
+
 export class TelaAgendaPage implements OnInit {
-  private agendamentoCollection: AngularFirestoreCollection<Agendamento>;
   dataHora: string;
+  hora: string;
   UserData: any
   userName:string
   servicoCabelo: string = 'Nenhum';
@@ -31,7 +37,6 @@ export class TelaAgendaPage implements OnInit {
   mensagem: string;
   saida: string;
   id: any
-  currentDate : FormControl;
   
 
   ConsultasCabelo : Servicos[];
@@ -43,16 +48,36 @@ export class TelaAgendaPage implements OnInit {
   public editMode = 1
 
   
+  
 
   constructor(
     private service: CrudService,
     private alertController: AlertController,
-    private route: ActivatedRoute,
     private afsAuth: AngularFireAuth,
     private firestore: AngularFirestore
   ) {
-    this.agendamentoCollection = this.firestore.collection<Agendamento>('Agendamento');
+  
   }
+
+  // onCheckboxChange(index: number) {
+  //   if (this.hora[index]) {
+  //     // desmarca todas as outras caixas
+  //     for (let i = 0; i < this.hora.length; i++) {
+  //       if (i !== index) {
+  //         this.hora[i] = false;
+  //       }
+  //     }
+  //   } else {
+  //     // atualiza o valor da primeira posição
+  //     this.hora[0] = true;
+  //     // desmarca todas as outras caixas
+  //     for (let i = 1; i < this.hora.length; i++) {
+  //       if (i !== index) {
+  //         this.hora[i] = false;
+  //       }
+  //     }
+  //   }
+  // }
 
   async presentAlert() {
     const alert = await this.alertController.create({
@@ -65,6 +90,7 @@ export class TelaAgendaPage implements OnInit {
 
     await alert.present();
   }
+
 
   async ngOnInit() {
     const uid = (await this.afsAuth.currentUser).uid;
@@ -124,50 +150,50 @@ export class TelaAgendaPage implements OnInit {
       })
   }
 
-
- async onSubmit(){
-      if (this.dataHora && this.servicoCabelo != 'Nenhum' || this.servicoBarba !='Nenhum' || this.servicoTintura !='Nenhum' || this.servicoDepilacao!='Nenhum' || this.servicoHidratacao !='Nenhum'){
-          const agendamento: Agendamento = {
-            data: this.dataHora.substr(0, 10),
-            horario: this.dataHora.substr(11, 5),
-            servicoCabelo: this.servicoCabelo.substr(0, 20),
-            servicoBarba: this.servicoBarba.substr(0, 20),
-            servicoTintura: this.servicoTintura.substr(0, 20),
-            servicoDepilacao: this.servicoDepilacao.substr(0, 20),
-            servicoHidratacao: this.servicoHidratacao.substr(0, 20),
-            pagamento: this.pagamento.substr(0, 20),
-            nomeUser: this.userName = this.UserData.nome
-          };
-       await this.firestore.collection('Agendamento').doc((await this.afsAuth.currentUser).uid).set(agendamento).then(() => {
+  checkAgendamento(dataHora : string){
+    const agendamentoRef = this.firestore.collection('Agendamento', ref => 
+    ref.where('data', '==',  dataHora.substr(0, 10))
+    .where('horario', '==', dataHora.substr(11, 5))
+    );
+  
+    return agendamentoRef.snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Agendamento;
+        const id = a.payload.doc.id;
+        return { id, ...data };
+      }))
+    );
+  }
+  
+  
+  async onSubmit() {
+    if (this.dataHora) {
+      this.editMode = 2
+      if (this.servicoCabelo != 'Nenhum' || this.servicoBarba != 'Nenhum' || this.servicoTintura != 'Nenhum' || this.servicoDepilacao != 'Nenhum' || this.servicoHidratacao != 'Nenhum') {
+        const agendamento: Agendamento = {
+          data: this.dataHora.substr(0, 10),
+          horario: this.hora.substr(0, 10),
+          servicoCabelo: this.servicoCabelo.substr(0, 20),
+          servicoBarba: this.servicoBarba.substr(0, 20),
+          servicoTintura: this.servicoTintura.substr(0, 20),
+          servicoDepilacao: this.servicoDepilacao.substr(0, 20),
+          servicoHidratacao: this.servicoHidratacao.substr(0, 20),
+          pagamento: this.pagamento.substr(0, 20),
+          nomeUser: this.userName = this.UserData.nome
+        };
+        await this.firestore.collection('Agendamento').doc((await this.afsAuth.currentUser).uid).set(agendamento).then(() => {
           this.dataHora = '';
           this.pagamento = '';
-          this.editMode = 5
-        })
-    }
-    else{
-      this.mensagem = 'Ops algo de Errado!'
-      this.saida = 'Por Favor verifique se não esqueceu de nada'
-      this.presentAlert()
-    }
-
-    }
-
-   public async verificarAgendamento(data: string, horario: string) {
-    const querySnapshot = await this.agendamentoCollection
-      .ref.where('data', '==', data)
-      .where('horario', '==', horario)
-      .get();
-      
-    if(!querySnapshot.empty){
-      this.mensagem = 'O dia ou o horário não estão disponiveis'
-      this.saida = 'Por Favor escolha outra data'
-      this.presentAlert()
-    }else{
-      this.editMode = 2
-    }
-  }
-
-
+          this.editMode = 5;
+        });
+      } 
+      } else {
+        this.mensagem = 'Ops, algo de errado!';
+        this.saida = 'Por favor, verifique se você selecionou a data e o horário.';
+        this.presentAlert();
+      }
+    } 
+  
   edit(){
     switch (this.editMode){
       // se tiver na tela 1(Calendario) vá para tela 2(onde escolhe os cortes)
@@ -191,6 +217,7 @@ export class TelaAgendaPage implements OnInit {
         break;
     }
   }
+  
 
   // vá para tela 3(pix)
   Pagamento(){

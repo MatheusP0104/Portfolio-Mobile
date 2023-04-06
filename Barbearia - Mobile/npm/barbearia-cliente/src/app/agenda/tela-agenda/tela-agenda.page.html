@@ -17,14 +17,51 @@
     </div>
 
     <div class="calendario">
-      <ion-datetime display-format="DD/MM/YYYY HH:mm" picker-format="DD/MM/YYYY HH:mm" [(ngModel)]="dataHora" name="dataHora">
-        <span slot="time-label">Selecione o Horário:</span>
-      </ion-datetime>
+      <ion-datetime display-format="DD/MM/YYYY" presentation="date" [(ngModel)]="dataHora" name="dataHora"></ion-datetime>
       <div class="line"></div>
     </div>
 
+    <ion-label>Selecione o Horário:</ion-label>
+
+    <ion-list>
+      <ion-item class="horario" lines="none">
+        <ion-checkbox [(ngModel)]="hora[0]" (ionChange)="onCheckboxChange(0)"></ion-checkbox>
+        <ion-label>8:00</ion-label>
+      </ion-item>
+
+      <ion-item class="horario" lines="none">
+        <ion-checkbox [(ngModel)]="hora[1]" (ionChange)="onCheckboxChange(1)"></ion-checkbox>
+        <ion-label>9:00</ion-label>
+      </ion-item>
+
+      <ion-item class="horario" lines="none">
+        <ion-checkbox [(ngModel)]="hora[2]" (ionChange)="onCheckboxChange(2)"></ion-checkbox>
+        <ion-label>10:00</ion-label>
+      </ion-item>
+
+      <ion-item class="horario" lines="none">
+        <ion-checkbox [(ngModel)]="hora[3]" (ionChange)="onCheckboxChange(3)"></ion-checkbox>
+        <ion-label>11:00</ion-label>
+      </ion-item>
+
+      <ion-item class="horario" lines="none">
+        <ion-checkbox [(ngModel)]="hora[4]" (ionChange)="onCheckboxChange(4)"></ion-checkbox>
+        <ion-label>14:00</ion-label>
+      </ion-item>
+
+      <ion-item class="horario" lines="none">
+        <ion-checkbox [(ngModel)]="hora[5]" (ionChange)="onCheckboxChange(5)"></ion-checkbox>
+        <ion-label>15:00</ion-label>
+      </ion-item>
+
+      <ion-item class="horario" lines="none">
+        <ion-checkbox [(ngModel)]="hora[6]" (ionChange)="onCheckboxChange(6)"></ion-checkbox>
+        <ion-label>16:00</ion-label>
+      </ion-item>
+    </ion-list>
+
     <div class="agendar">
-      <ion-button color=" --ion-background-color: #fff;" (click)="edit()">Confirmar</ion-button>
+      <ion-button color=" --ion-background-color: #fff;" type="submit">Confirmar</ion-button>
     </div>
 
     <div class="agendar">
@@ -51,7 +88,7 @@
     <ion-list>
       <h1 class="Titonlo">Cabelo</h1>
       <ion-item>
-        <ion-select placeholder="Selecione o Cabelo" [(ngModel)]="servicoCabelo" name="servicoCabelo">
+        <ion-select placeholder="Selecione o Cabelo" interface="popover" [(ngModel)]="servicoCabelo" name="servicoCabelo">
           <ion-select-option value="Nenhum" class="my-red-option">Nenhum</ion-select-option>
           <ion-select-option *ngFor="let consulta of ConsultasCabelo" class="my-red-option">{{consulta.nome}}</ion-select-option>
         </ion-select>
@@ -61,7 +98,7 @@
 
       <h1 class="Titonlo">Barba</h1>
       <ion-item>
-        <ion-select placeholder="Selecione a Barba" [(ngModel)]="servicoBarba" name="servicoBarba">
+        <ion-select placeholder="Selecione a Barba" interface="popover" [(ngModel)]="servicoBarba" name="servicoBarba">
           <ion-select-option value="Nenhum">Nenhum</ion-select-option>
           <ion-select-option *ngFor="let consulta of ConsultasBarba">{{consulta.nome}}</ion-select-option>
         </ion-select>
@@ -71,7 +108,7 @@
       
       <h1 class="Titonlo">Tintura</h1>
       <ion-item>
-        <ion-select placeholder="Selecione a Tintura" [(ngModel)]="servicoTintura" name="servicoTintura">
+        <ion-select placeholder="Selecione a Tintura" interface="popover" [(ngModel)]="servicoTintura" name="servicoTintura">
           <ion-select-option value="Nenhum">Nenhum</ion-select-option>
             <ion-select-option *ngFor="let consulta of ConsultasTintura">{{consulta.nome}}</ion-select-option>
           </ion-select>
@@ -79,7 +116,7 @@
         
         <h1 class="Titonlo">Depilação</h1>
         <ion-item>
-          <ion-select placeholder="Selecione a Tintura" [(ngModel)]="servicoDepilacao" name="servicoDepilacao">
+          <ion-select placeholder="Selecione a Tintura" interface="popover" [(ngModel)]="servicoDepilacao" name="servicoDepilacao">
             <ion-select-option value="Nenhum">Nenhum</ion-select-option>
               <ion-select-option *ngFor="let consulta of ConsultasDepilacao">{{consulta.nome}}</ion-select-option>
             </ion-select>
@@ -87,7 +124,7 @@
         
         <h1 class="Titonlo" >Hidratação</h1>
         <ion-item>
-          <ion-select placeholder="Selecione a Tintura" [(ngModel)]="servicoHidratacao" name="servicoHidratacao">
+          <ion-select placeholder="Selecione a Tintura" interface="popover" [(ngModel)]="servicoHidratacao" name="servicoHidratacao">
             <ion-select-option value="Nenhum">Nenhum</ion-select-option>
               <ion-select-option *ngFor="let consulta of ConsultasHidratacao">{{consulta.nome}}</ion-select-option>
             </ion-select>
@@ -95,7 +132,7 @@
 
           <h2 class="Titonlo">Opções de Pagamento</h2>
         <ion-item>
-          <ion-select placeholder="Selecione o Pagamento" [(ngModel)]="pagamento" name="pagamento">
+          <ion-select placeholder="Selecione o Pagamento" interface="popover" [(ngModel)]="pagamento" name="pagamento">
               <ion-select-option value="pix">Pix</ion-select-option>
               <ion-select-option value="pagar-no-local">Pagar no Local</ion-select-option>
             </ion-select>
