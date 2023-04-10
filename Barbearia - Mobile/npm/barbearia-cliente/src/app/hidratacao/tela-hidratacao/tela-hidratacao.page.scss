@@ -1,22 +1,28 @@
 .body{
     --ion-background-color: #fff;
 }
+ 
+.toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+.voltar{
+    width: 80px;
+    height: 3vh;
+}
 
 .logo{
-    position: relative;
-    margin-top: 10px;
-    left: 8em;
     width: 55px;
     height: 55px;
 }
 
-.voltar{
-    position: absolute;
-    top: 0px;
-    left: -10px;
-    width: 85px;
-    height: 82px;
+.invi{
+    width: 23%;
 }
+
 .title{
     display: flex;
     justify-content: center;

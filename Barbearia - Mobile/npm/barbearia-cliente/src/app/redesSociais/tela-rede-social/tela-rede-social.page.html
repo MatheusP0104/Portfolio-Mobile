@@ -1,28 +1,44 @@
 <ion-header mode="ios">
   <ion-toolbar>
-    <ion-button class="voltar" color="--ion-background-color:#323131;" routerLink="/tela-principal">
-      <img id="img_voltar" src="assets/imagens/voltar.png" alt="">
-    </ion-button>
-    <img class="logo" src="assets/imagens/logo.png" alt="">
+    <div class="toolbar">
+      <ion-button class="voltar" color="--ion-background-color:#323131;" routerLink="/tela-principal">
+        <img id="img_voltar" src="assets/imagens/voltar.png" alt="">
+      </ion-button>
+      <img class="logo" src="assets/imagens/logo.png" alt="">
+      <ion-button class="invi" color="--ion-background-color:#323131;"></ion-button>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="body" mode="ios">
-  <div id="redes_sociais">Redes Sociais</div>
-  <div class="lines1"></div>
-
-  <div id="container">
-    <ion-col><div class="dividir">Entre em contato com nosso serviço de atendimento</div></ion-col>
-    <ion-item class="email" lines="none">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="auto"><ion-icon id="imagem" name="logo-facebook"></ion-icon></ion-col>
-          <ion-col><div class="titulo">Facebook</div></ion-col>
-          <ion-col><div>studio haircut barbershop</div></ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-
+  <div class="contato">
+    <ion-label>Redes Sociais</ion-label>
+    <div class="lines1"></div>
   </div>
+  
+  <div class="container">
+    <ion-label>Siga nossas páginas:</ion-label>
+  </div>
+
+  <div class="container-opcao">
+    <div class="email">
+      <img src="assets/imagens/facebook.png" alt="">
+      <ion-label>Facebook:</ion-label>
+    </div>
+    <a>StudioHairCutOficial</a>
+
+    <div class="whats">
+      <img src="assets/imagens/instagram.png" alt="">
+      <ion-label>Instagram:</ion-label>
+    </div>
+    <a>StudioHairCutOficial</a>
+
+    <div class="telefone">
+      <img src="assets/imagens/linkedin.png" alt="">
+      <ion-label>Linkedin:</ion-label>
+    </div>
+    <a>StudioHairCutOficial</a>
+  </div>
+  
 
 </ion-content>

@@ -1,49 +1,43 @@
 <ion-header mode="ios">
   <ion-toolbar>
-    <ion-button class="voltar" color="--ion-background-color:#323131;" routerLink="/tela-principal">
-      <img id="img_voltar" src="assets/imagens/voltar.png" alt="">
-    </ion-button>
-    <img class="logo" src="assets/imagens/logo.png" alt="">
+    <div class="toolbar">
+      <ion-button class="voltar" color="--ion-background-color:#323131;" routerLink="/tela-principal">
+        <img id="img_voltar" src="assets/imagens/voltar.png" alt="">
+      </ion-button>
+      <img class="logo" src="assets/imagens/logo.png" alt="">
+      <ion-button class="invi" color="--ion-background-color:#323131;"></ion-button>
+    </div>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="body" mode="ios">
-  <div id="contato">Contato</div>
-  <div class="lines1"></div>
+  <div class="contato">
+    <ion-label>Contatos</ion-label>
+    <div class="lines1"></div>
+  </div>
   
-  <div id="container">
-    <ion-col><div class="dividir">Entre em contato com nosso serviço de atendimento</div></ion-col>
+  <div class="container">
+    <ion-label>Entre em contato com alguma das opções abaixo:</ion-label>
+  </div>
 
-    <ion-item class="email" lines="none">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="auto"><ion-icon id="imagem" name="mail-outline"></ion-icon></ion-col>
-          <ion-col><div class="titulo">Email</div></ion-col>
-          <ion-col><div>studiohaircut@gmail.com</div></ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    
-    <ion-item class="whatsapp" lines="none">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="auto"><ion-icon id="imagem" name="logo-whatsapp"></ion-icon></ion-col>
-          <ion-col><div class="titulo">Whatsapp</div></ion-col>
-          <ion-col><div>(35) 9 9971-3481</div></ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    
-    <ion-item class="telefone" lines="none">
-      <ion-grid>
-        <ion-row>
-          <ion-col size="auto"><ion-icon id="imagem" name="call-outline"></ion-icon></ion-col>
-          <ion-col><div class="titulo">Telefone</div></ion-col>
-          <ion-col><div>(35) 9 9925-9260</div></ion-col>
-        </ion-row>
-      </ion-grid>
-    </ion-item>
-    
+  <div class="container-opcao">
+    <div class="email">
+      <img src="assets/imagens/E-mailLink.png" alt="">
+      <ion-label>E-mail:</ion-label>
+    </div>
+    <a href="mailto:ms2969887@gmail.com">StudioHairCut@gmail.com</a>
+
+    <div class="whats">
+      <img src="assets/imagens/whatsapp.png" alt="">
+      <ion-label>Whatsapp:</ion-label>
+    </div>
+    <a href="https://wa.me/5535998146747">Fale Comigo pelo Whatsapp <br>Clique Aqui</a>
+
+    <div class="telefone">
+      <img src="assets/imagens/telefoneLink.png" alt="">
+      <ion-label>Telefone:</ion-label>
+    </div>
+    <a href="tel:+5535998146747">Ligue para mim <br>Clique Aqui</a>
   </div>
   
 

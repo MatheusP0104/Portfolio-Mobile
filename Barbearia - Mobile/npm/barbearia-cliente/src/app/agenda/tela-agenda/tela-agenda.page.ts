@@ -1,20 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Agendamento } from 'src/app/models/agendamento';
 import { Servicos } from 'src/app/models/servicos';
 import { Users } from 'src/app/models/users';
 import { CrudService } from 'src/app/services/crud.service';
-import { ActivatedRoute } from '@angular/router';
-import { FormControl } from '@angular/forms';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-
-interface AgendamentoComId extends Agendamento {
-  id: string;
-}
+import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { IonDatetime } from '@ionic/angular';
 
 
 @Component({
@@ -24,8 +16,9 @@ interface AgendamentoComId extends Agendamento {
 })
 
 export class TelaAgendaPage implements OnInit {
+  @ViewChild('myDate') myDate: IonDatetime;
   dataHora: string;
-  hora: string;
+  horarioSelecionado: string;
   UserData: any
   userName:string
   servicoCabelo: string = 'Nenhum';
@@ -48,37 +41,15 @@ export class TelaAgendaPage implements OnInit {
   public editMode = 1
 
   
-  
-
   constructor(
     private service: CrudService,
     private alertController: AlertController,
     private afsAuth: AngularFireAuth,
     private firestore: AngularFirestore
   ) {
-  
   }
 
-  // onCheckboxChange(index: number) {
-  //   if (this.hora[index]) {
-  //     // desmarca todas as outras caixas
-  //     for (let i = 0; i < this.hora.length; i++) {
-  //       if (i !== index) {
-  //         this.hora[i] = false;
-  //       }
-  //     }
-  //   } else {
-  //     // atualiza o valor da primeira posição
-  //     this.hora[0] = true;
-  //     // desmarca todas as outras caixas
-  //     for (let i = 1; i < this.hora.length; i++) {
-  //       if (i !== index) {
-  //         this.hora[i] = false;
-  //       }
-  //     }
-  //   }
-  // }
-
+ 
   async presentAlert() {
     const alert = await this.alertController.create({
       header: 'Alerta!',
@@ -150,29 +121,60 @@ export class TelaAgendaPage implements OnInit {
       })
   }
 
-  checkAgendamento(dataHora : string){
-    const agendamentoRef = this.firestore.collection('Agendamento', ref => 
-    ref.where('data', '==',  dataHora.substr(0, 10))
-    .where('horario', '==', dataHora.substr(11, 5))
-    );
   
-    return agendamentoRef.snapshotChanges().pipe(
-      map(actions => actions.map(a => {
-        const data = a.payload.doc.data() as Agendamento;
-        const id = a.payload.doc.id;
-        return { id, ...data };
-      }))
-    );
+
+  async selecionarHorario(horario: string) {
+    // desmarca as outras checkboxes
+    document.querySelectorAll('.horario ion-checkbox').forEach((checkbox) => {
+      checkbox['checked'] = false;
+    });
+    
+    if (await this.verificarDisponibilidade(this.dataHora, horario)) {
+      // marca a checkbox selecionada
+      this.horarioSelecionado = horario;
+      document.querySelector(`.horario[label="${horario}"] ion-checkbox`)['checked'] = true;
+    } else {
+      // se o horário já estiver agendado, exibe uma mensagem de erro
+      const alert = await this.alertController.create({
+        header: 'Horário já agendado',
+        message: 'Este horário já foi agendado. Por favor, selecione outro horário.',
+        buttons: ['OK']
+      });
+      await alert.present();
+    }
   }
   
   
+  async verificarDisponibilidade(data: string, horario: string): Promise<boolean> {
+    const agendamentosRef = this.firestore.collection('Agendamento').ref;
+    const queryRef = agendamentosRef.where('data', '==', data).where('horario', '==', horario); 
+    const querySnapshot = await queryRef.get();
+    if (!querySnapshot.empty) {
+      // horário já agendado, não permitir agendamento
+      return false;
+    } else {
+      // horário disponível, permitir agendamento
+      return true;
+    }
+  }
+
+  onDateChange(event) {
+    const selectedDate = new Date(event.detail.value);
+    const isoDate = selectedDate.toISOString();
+    const formattedDate = isoDate.slice(8, 10) + '/' + isoDate.slice(5, 7) + '/' + isoDate.slice(0, 4);
+    this.dataHora = formattedDate;
+  }
+  
+ 
+
+
   async onSubmit() {
     if (this.dataHora) {
       this.editMode = 2
       if (this.servicoCabelo != 'Nenhum' || this.servicoBarba != 'Nenhum' || this.servicoTintura != 'Nenhum' || this.servicoDepilacao != 'Nenhum' || this.servicoHidratacao != 'Nenhum') {
         const agendamento: Agendamento = {
-          data: this.dataHora.substr(0, 10),
-          horario: this.hora.substr(0, 10),
+          data: this.dataHora,
+          horario: this.horarioSelecionado,
           servicoCabelo: this.servicoCabelo.substr(0, 20),
           servicoBarba: this.servicoBarba.substr(0, 20),
           servicoTintura: this.servicoTintura.substr(0, 20),

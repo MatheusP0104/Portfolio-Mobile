@@ -1,15 +1,19 @@
 .map{
     margin-top: 2vh;
     margin-left: 2vh;
-    
     height: 50vh;
     width: 90vw;
 }
 
+.toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
+
 .logo{
-    position: relative;
-    margin-top: 10px;
-    left: 7.7rem;
     width: 65px;
     height: 65px;
 }
@@ -44,9 +48,6 @@
 
 
 .voltar{
-    position: absolute;
-    top: 0px;
-    left: -10px;
     width: 85px;
     height: 82px;
 }
@@ -80,4 +81,9 @@
 ion-icon{
     width: 70px;
     height: 70px;
+}
+
+
+.invi{
+    width: 23%;
 }

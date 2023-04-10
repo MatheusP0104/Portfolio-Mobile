@@ -13,18 +13,32 @@ export class TelaLoginPage implements OnInit {
   password: string = '';
   showPassword: boolean = false;
   email: any
-  senha : any
+  senha: any
+  mensagem: string
+  saida : string
   
   
 
   constructor(
     public router: Router,
     private auth: AngularFireAuth,
+    private alert : AlertController
     ) { }
 
    
 
-  ngOnInit() {}
+  ngOnInit() { }
+  
+  async presentAlert() {
+    const alert = await this.alert.create({
+      header: 'Verificar Email',
+      subHeader: this.mensagem,
+      message: this.saida,
+      buttons: ['Voltar'],
+    });
+
+    await alert.present();
+  }
 
   login() { 
 
@@ -35,14 +49,21 @@ export class TelaLoginPage implements OnInit {
     this.auth.signInWithEmailAndPassword(this.email, this.senha).then(userCredential => {
 
     // Signed up
-    if (userCredential.user) {
-      this.router.navigateByUrl('/tela-principal')
+      if (userCredential.user) {
+        this.router.navigateByUrl('/tela-principal')
+        // if (userCredential.user.emailVerified) {
+        //   
+        // } else {
+        //   this.mensagem = 'Verifique seu Email!'
+        //   this.saida = 'Por Favor verifique seu email para continuar'
+        //   this.presentAlert()
+        // }
     }
   })
   .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    window.alert(errorMessage)
+    // this.mensagem = 'Email ou Senha Inválidos!'
+    // this.saida = 'Por Favor verifique se os campos foram preenchidos corretamente.'
+    // this.presentAlert()
   });
   }
 

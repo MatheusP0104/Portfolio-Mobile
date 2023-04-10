@@ -6,17 +6,15 @@
 }
 
 .logo{
-    position: relative;
-    margin-top: 10px;
-    left: 5rem;
+    display: flex;
     width: 65px;
     height: 65px;
+    margin-left: 32%;
 }
 
 
 ion-menu{
     --ion-background-color: #fff;
-    cursor: pointer;
     color: #000000;
 }
 
@@ -25,9 +23,6 @@ ion-menu{
     height: 50px;
 }
 
-.header{
-    --ion-background-color: #D9D9D9;
-}
 
 .info-user3{
     display: flex;
@@ -59,7 +54,12 @@ ion-menu{
         height: auto;
         text-align: right;
         color: #000000;
+        z-index: 1;
       }
+}
+
+.select{
+    margin-top: -10%;
 }
 
 .select ion-item{ 
@@ -72,17 +72,16 @@ ion-menu{
 }
 
 .servicos{
-    position: absolute;
-    width: 236px;
-    height: 42px;
-    left: 75px;
-    top: 130px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   margin-top: 7%;
+}
+
+.servicos ion-label{
     font-family: 'Inika';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 25px;
-    line-height: 42px;
-    color: #000000;
+    font-weight: 600;
+    font-size: 22px;
 }
 
 .container{

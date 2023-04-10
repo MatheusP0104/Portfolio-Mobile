@@ -3,100 +3,117 @@
     --ion-background-color: #fff;
 }
 
+.toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+}
+
 .voltar{
-    position: relative;
-    top: -30px;
-    left: -10px;
     width: 80px;
     height: 3vh;
 }
 
 .logo{
-    position: relative;
-    margin-top: 10px;
-    left: 3rem;
     width: 55px;
     height: 55px;
 }
 
-#redes_sociais{
+.contato{
     display: flex;
-    position: absolute;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 10%;
+    gap: 20px;
+}
+
+.contato ion-label{
+    font-family: 'Inika';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+.lines1{
+    width: 90%;
+    border: 1px solid #000000;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+}
+
+.container ion-label{
     font-family: 'Inika';
     font-style: normal;
     font-weight: 700;
     font-size: 1.5rem;
-    line-height: 42px;
-    height: 50px;
-    width: 320px;
-    top: 20px;
 }
 
-.lines1{
-    position: absolute;
-    width: 280px;
-    height: 0px;
-    left: 20px;
-    top: 80px;
-    border: 1px solid #000000;
-}
-
-#imagem{
+.container-opcao{
     display: flex;
-    position: relative;
     justify-content: center;
     align-items: center;
-    width: 30px;
-    height: 30px;
-    top: 6px;
-    left: 25px;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    text-align: center;
 }
 
-#container{
-    display: flex;
-    position: relative;
-    justify-content: center;
-    align-items: flex-start;
-    text-align: center;
+.container-opcao ion-label{
     font-family: 'Inika';
     font-style: normal;
     font-weight: 700;
-    line-height: 42px;  
-    
-    flex-direction: column;
-    flex-wrap: wrap;
-
-    row-gap: 30px;
-    column-gap: 30px;
-
-    top: 70px;
-
-    height: 300px;
-    width: 320px;
+    font-size: 1.5rem;
 }
 
-#container div{
-    position: relative;
-    width: 220px;
-    left: 30px;
-    
-}
-
-#container .dividir{
-    position: relative;
-    width: 260px;
-    left: 47px;
-    text-align:  center;
+.container-opcao a{
     font-family: 'Inika';
     font-style: normal;
-    font-weight: 520;
-    line-height: 42px;  
-    font-size: 20px;
-    margin-left: -26px;
-    
+    font-weight: 700;
+    font-size: 1.2rem;
 }
 
-.titulo{
-    font-size: 1.3rem;
+.container-opcao img{
+    width: 25px;
+    height: 25px;
+}
+
+.email{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row;
+}
+
+.whats{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row;
+}
+
+.telefone{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: row;
+}
+
+a{
+    margin-bottom: 10%;
+    text-decoration: none;
+}
+
+.invi{
+    width: 23%;
 }
