@@ -134,7 +134,28 @@ export class TelaTinturaPage implements OnInit {
     await alert.present();
   }
 
-  excluirConsulta(id) {  
-    this.service.deleteServicoTintura(id)
-}
+  async excluirConsulta(id) { 
+    const alerterror = await this.alerta.create({
+      header: 'Excluir Serviço',
+      message: 'Deseja excluir esse serviço?',
+      cssClass: 'custom-alert',
+      
+      buttons: [
+        {
+          text: 'Não',
+          cssClass: 'alert-button-cancel',
+        },
+        {
+          text: 'Sim',
+          handler: () => {
+            this.service.deleteServicoTintura(id)
+          },
+          cssClass: 'alert-button-confirm',
+        },
+      ],
+    });
+    
+    alerterror.present(); 
+  }
+
 }

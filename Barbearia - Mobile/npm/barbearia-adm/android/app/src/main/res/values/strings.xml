@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">barbearia</string>
-    <string name="title_activity_main">barbearia</string>
+    <string name="app_name">barbearia-admin</string>
+    <string name="title_activity_main">barbearia-admin</string>
     <string name="package_name">io.ionic.starter</string>
     <string name="custom_url_scheme">io.ionic.starter</string>
 </resources>

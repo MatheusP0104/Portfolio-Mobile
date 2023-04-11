@@ -30,8 +30,11 @@ export class TelaPrincipalPage implements OnInit {
   ) {}
 
  async ngOnInit() {
-  const uid = (await this.afAuth.currentUser).uid;
-  const userDoc = await this.firestore.collection('Users').doc(uid).get().toPromise();
+  }
+
+  async ionViewDidEnter() {
+    const uid = (await this.afAuth.currentUser).uid;
+    const userDoc = await this.firestore.collection('Users').doc(uid).get().toPromise();
    this.UserData = userDoc.data();
    
    this.userEmail = this.UserData.nome

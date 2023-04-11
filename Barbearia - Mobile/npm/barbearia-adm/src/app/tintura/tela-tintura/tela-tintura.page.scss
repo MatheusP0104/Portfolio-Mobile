@@ -48,15 +48,14 @@ h3{
     font-size: 20px;
 }
 
-ion-item::part(native){
-    border-bottom: #000 2px solid;
-}
+
 
 .itens{
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
+    border-bottom: #000 2px solid;
 }
 
 .field{
@@ -89,4 +88,9 @@ ion-item::part(native){
     border: 2px solid #000000;
     border-radius: 30px;
 
+}
+
+.excluir{
+    position: relative;
+    left: 80%;
 }

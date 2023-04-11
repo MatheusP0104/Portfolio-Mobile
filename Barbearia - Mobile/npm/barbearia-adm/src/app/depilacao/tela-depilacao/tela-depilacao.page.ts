@@ -33,6 +33,7 @@ export class TelaDepilacaoPage implements OnInit {
     })
   }
 
+
   ngOnInit() {
     this.editForm = this.formBuilder.group({
       nome: [''],
@@ -133,9 +134,27 @@ export class TelaDepilacaoPage implements OnInit {
 
     await alert.present();
   }
-
-  excluirConsulta(id) {  
-    this.service.deleteServicoDepilacao(id)
-}
-
+  async excluirConsulta(id) { 
+    const alerterror = await this.alerta.create({
+      header: 'Excluir Serviço',
+      message: 'Deseja excluir esse serviço?',
+      cssClass: 'custom-alert',
+      
+      buttons: [
+        {
+          text: 'Não',
+          cssClass: 'alert-button-cancel',
+        },
+        {
+          text: 'Sim',
+          handler: () => {
+            this.service.deleteServicoDepilacao(id)
+          },
+          cssClass: 'alert-button-confirm',
+        },
+      ],
+    });
+    
+    alerterror.present(); 
+  }
 }

@@ -33,6 +33,8 @@ export class TelaBarbaPage implements OnInit {
     })
   }
 
+
+
   ngOnInit() {
     this.editForm = this.formBuilder.group({
       nome: [''],
@@ -140,8 +142,29 @@ export class TelaBarbaPage implements OnInit {
     await alert.present();
   }
 
-  excluirConsulta(id) {  
-    this.service.deleteServicoBarba(id)
-}
+  async excluirConsulta(id) { 
+    const alerterror = await this.alerta.create({
+      header: 'Excluir Serviço',
+      message: 'Deseja excluir esse serviço?',
+      cssClass: 'custom-alert',
+      
+      buttons: [
+        {
+          text: 'Não',
+          cssClass: 'alert-button-cancel',
+        },
+        {
+          text: 'Sim',
+          handler: () => {
+            this.service.deleteServicoBarba(id)
+          },
+          cssClass: 'alert-button-confirm',
+        },
+      ],
+    });
+    
+    alerterror.present(); 
+  }
+ 
 
 }

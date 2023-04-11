@@ -20,6 +20,7 @@ export class TelaPrincipalPage implements OnInit {
   isLoggedIn:boolean
   private userDataKey = 'user_data';
   UserData: any
+
  
 
   constructor(
@@ -30,12 +31,23 @@ export class TelaPrincipalPage implements OnInit {
   ) {}
 
  async ngOnInit() {
-  const uid = (await this.afAuth.currentUser).uid;
-  const userDoc = await this.firestore.collection('Admin').doc(uid).get().toPromise();
+  }
+
+  async ionViewDidEnter() {
+    const uid = (await this.afAuth.currentUser).uid;
+    const userDoc = await this.firestore.collection('Admin').doc(uid).get().toPromise();
    this.UserData = userDoc.data();
    
    this.userEmail = this.UserData.nome
   }
+
+   handleRefresh(event) {
+    setTimeout(() => {
+      this.userEmail = this.UserData.nome
+      event.target.complete();
+    }, 2000);
+  };
+ 
 
   onClick() {
     this.menuController.close();

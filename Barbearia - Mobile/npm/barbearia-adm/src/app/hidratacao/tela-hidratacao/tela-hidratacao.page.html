@@ -21,13 +21,17 @@
     </div>
     
     <div class="itens" *ngFor="let consulta of Consultas">
+      <div class="excluir">
+        <ion-item lines="none">
+          <ion-button color="danger" (click)="excluirConsulta(consulta.id)"><ion-icon name="trash-outline"></ion-icon></ion-button>
+        </ion-item>
+      </div>
       <ion-item mode="ios" button detail-icon="false" lines="full" class="field" [routerLink]="['/update-hidratacao/', consulta.id]">
         <ion-label> 
           <h3>{{consulta.nome}}</h3>
           <h5>{{consulta.descricao}}</h5>
         </ion-label>
         <ion-note slot="end">R${{consulta.valor}}</ion-note>
-        <ion-button slot="end" color="danger" (click)="excluirConsulta(consulta.id)"><ion-icon name="trash-outline"></ion-icon></ion-button>
       </ion-item>
     </div>
 

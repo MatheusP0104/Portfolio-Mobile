@@ -17,7 +17,8 @@ export class TelaCabeloPage implements OnInit {
   Consultas : Servicos[];
   editForm : FormGroup;
   id: any;
-  isExclusaoAtiva = false;
+  mensagem: string
+  saida: string
   constructor(
     private service : CrudService,
     private activateRouter : ActivatedRoute,
@@ -36,6 +37,8 @@ export class TelaCabeloPage implements OnInit {
       })
     })
   }
+
+  
 
   ngOnInit() {
     this.editForm = this.formBuilder.group({
@@ -144,11 +147,30 @@ export class TelaCabeloPage implements OnInit {
     await alert.present();  
   }
 
-  excluirConsulta(id) {  
-    this.isExclusaoAtiva = true;
-    this.service.deleteServicoCabelo(id)
-    this.isExclusaoAtiva = false;
-}
+ async excluirConsulta(id) { 
+    const alerterror = await this.alerta.create({
+      header: 'Excluir Serviço',
+      message: 'Deseja excluir esse serviço?',
+      cssClass: 'custom-alert',
+      
+      buttons: [
+        {
+          text: 'Não',
+          cssClass: 'alert-button-cancel',
+        },
+        {
+          text: 'Sim',
+          handler: () => {
+            this.service.deleteServicoCabelo(id)
+          },
+          cssClass: 'alert-button-confirm',
+        },
+      ],
+    });
+    
+    alerterror.present(); 
+  }
+
 
 }
 
