@@ -3,20 +3,25 @@
     font-family: 'Inika';
 }
 
-.logo{
-    position: relative;
-    margin-top: 10px;
-    left: 7.3em;
-    width: 75px;
-    height: 75px;
+.toolbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
 }
 
 .voltar{
-    position: absolute;
-    top: 0px;
-    left: -10px;
-    width: 85px;
-    height: 82px;
+    width: 80px;
+    height: 3vh;
+}
+
+.logo{
+    width: 55px;
+    height: 55px;
+}
+
+.invi{
+    width: 23%;
 }
 
 .title-container{

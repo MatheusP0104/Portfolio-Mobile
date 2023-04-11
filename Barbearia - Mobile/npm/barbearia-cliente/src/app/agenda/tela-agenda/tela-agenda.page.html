@@ -91,7 +91,7 @@
     <ion-list>
       <h1 class="Titonlo">Cabelo</h1>
       <ion-item>
-        <ion-select placeholder="Selecione o Cabelo" interface="popover" [(ngModel)]="servicoCabelo" name="servicoCabelo">
+        <ion-select placeholder="Selecione o Cabelo" interface="popover" [(ngModel)]="servicoCabelo" name="servicoCabelo" (ionChange)="atualizarValorCabelo(); calcularTotal()">
           <ion-select-option value="Nenhum" class="my-red-option">Nenhum</ion-select-option>
           <ion-select-option *ngFor="let consulta of ConsultasCabelo" class="my-red-option">{{consulta.nome}}</ion-select-option>
         </ion-select>
@@ -101,7 +101,7 @@
 
       <h1 class="Titonlo">Barba</h1>
       <ion-item>
-        <ion-select placeholder="Selecione a Barba" interface="popover" [(ngModel)]="servicoBarba" name="servicoBarba">
+        <ion-select placeholder="Selecione a Barba" interface="popover" [(ngModel)]="servicoBarba" name="servicoBarba" (ionChange)="atualizarValorBarba(); calcularTotal()">
           <ion-select-option value="Nenhum">Nenhum</ion-select-option>
           <ion-select-option *ngFor="let consulta of ConsultasBarba">{{consulta.nome}}</ion-select-option>
         </ion-select>
@@ -111,7 +111,7 @@
       
       <h1 class="Titonlo">Tintura</h1>
       <ion-item>
-        <ion-select placeholder="Selecione a Tintura" interface="popover" [(ngModel)]="servicoTintura" name="servicoTintura">
+        <ion-select placeholder="Selecione a Tintura" interface="popover" [(ngModel)]="servicoTintura" name="servicoTintura" (ionChange)="atualizarValorTintura(); calcularTotal()">
           <ion-select-option value="Nenhum">Nenhum</ion-select-option>
             <ion-select-option *ngFor="let consulta of ConsultasTintura">{{consulta.nome}}</ion-select-option>
           </ion-select>
@@ -119,7 +119,7 @@
         
         <h1 class="Titonlo">Depilação</h1>
         <ion-item>
-          <ion-select placeholder="Selecione a Tintura" interface="popover" [(ngModel)]="servicoDepilacao" name="servicoDepilacao">
+          <ion-select placeholder="Selecione a Tintura" interface="popover" [(ngModel)]="servicoDepilacao" name="servicoDepilacao" (ionChange)="atualizarValorDepilacao(); calcularTotal()">
             <ion-select-option value="Nenhum">Nenhum</ion-select-option>
               <ion-select-option *ngFor="let consulta of ConsultasDepilacao">{{consulta.nome}}</ion-select-option>
             </ion-select>
@@ -127,7 +127,7 @@
         
         <h1 class="Titonlo" >Hidratação</h1>
         <ion-item>
-          <ion-select placeholder="Selecione a Tintura" interface="popover" [(ngModel)]="servicoHidratacao" name="servicoHidratacao">
+          <ion-select placeholder="Selecione a Tintura" interface="popover" [(ngModel)]="servicoHidratacao" name="servicoHidratacao" (ionChange)="atualizarValorHidratacao(); calcularTotal()">
             <ion-select-option value="Nenhum">Nenhum</ion-select-option>
               <ion-select-option *ngFor="let consulta of ConsultasHidratacao">{{consulta.nome}}</ion-select-option>
             </ion-select>
@@ -150,7 +150,7 @@
     <!-- Tela Pagamento Pix -->
     <div *ngIf="editMode == 3">
       <div class="logoBarber">
-        <img class="studio" src="assets/imagens/Studio Haircut 1.png" alt="">
+        <img  src="assets/imagens/Studio Haircut 1.png" alt="">
         <img class="pix" src="assets/imagens/logo_pix.png" alt="">
       </div>
       
@@ -162,18 +162,24 @@
         <h1>Código do Pix gerado!</h1>
         
         <p>Use os dados abaixo para concluir o seu pagamento:</p>
+
+        <div class="valor">
+          <ion-label class="texto_valorTotal">Valor Total:R$ {{total.toFixed(2)}} </ion-label>
+        </div>
         
         <img class="qrcode" src="assets/imagens/qrcode-pix.png" alt="">
-        <h6>00020126450014BR.GOV.BCB.PIX0123studiohaircut@gmail.com5204000053039865802BR5925Studio HairCut BarberShop6012Pouso Alegre62070503***63041D65</h6>
+        <h6 id="text-copy">00020126450014BR.GOV.BCB.PIX0123studiohaircut@gmail.com5204000053039865802BR5925Studio HairCut BarberShop6012Pouso Alegre62070503***63041D65</h6>
+
+        <ion-button class="copiar" color=" --ion-background-color: #fff;" (click)="copyText()">Copiar Código Pix</ion-button>
         <ion-button class="finalizar" color=" --ion-background-color: #fff;" type="submit">Finalizar Pedido no Pix</ion-button>
       </div>
     </div>
     
     <!-- Pagamento no local -->
     <div *ngIf="editMode == 4">
-      <div class="logoBarber">
-        <img class="studio" src="assets/imagens/Studio Haircut 1.png" alt="">
-        <img class="pix" src="assets/imagens/moeda.png" alt="">
+      <div class="local">
+        <img src="assets/imagens/Studio Haircut 1.png" alt="">
+        <img class="moeda" src="assets/imagens/moeda.png" alt="">
       </div>
       
       <div class="linhas">
@@ -186,14 +192,14 @@
         <p>Use os dados abaixo para concluir o seu pagamento:</p>
         
         <div class="valor">
-          <ion-label class="texto_valorTotal">Valor Total: </ion-label>
-          <ion-label class="texto_real">R$ VALOR</ion-label>
+          <ion-label class="texto_valorTotal">Valor Total:R$ {{total.toFixed(2)}} </ion-label>
         </div>
         
         <ion-list class="troco">
           <h3>Troco: </h3>
           <ion-item>
             <ion-select interface="popover" placeholder='Precisa de "Troco"'>
+              <ion-select-option value="vinte">R$ 20</ion-select-option>
               <ion-select-option value="cinquenta">R$ 50</ion-select-option>
               <ion-select-option value="cem">R$ 100</ion-select-option>
             </ion-select>

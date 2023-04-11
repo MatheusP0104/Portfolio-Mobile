@@ -134,4 +134,8 @@ export class TelaDepilacaoPage implements OnInit {
     await alert.present();
   }
 
+  excluirConsulta(id) {  
+    this.service.deleteServicoDepilacao(id)
+}
+
 }

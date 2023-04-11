@@ -30,6 +30,13 @@ export class TelaAgendaPage implements OnInit {
   mensagem: string;
   saida: string;
   id: any
+  valorCabelo: number = 0;
+  valorBarba: number = 0;
+  valorTintura: number = 0;
+  valorDepilacao: number = 0;
+  valorHidratacao: number = 0;
+  total: number = 0;
+  
   
 
   ConsultasCabelo : Servicos[];
@@ -61,7 +68,6 @@ export class TelaAgendaPage implements OnInit {
 
     await alert.present();
   }
-
 
   async ngOnInit() {
     const uid = (await this.afsAuth.currentUser).uid;
@@ -121,6 +127,63 @@ export class TelaAgendaPage implements OnInit {
       })
   }
 
+  atualizarValorCabelo() {
+    if (this.servicoCabelo !== 'Nenhum') {
+      const servico = this.ConsultasCabelo.find((consulta) => consulta.nome === this.servicoCabelo);
+      this.valorCabelo = servico.valor;
+      console.log(this.valorCabelo)
+    } else {
+      this.valorCabelo = 0;
+    }
+  }
+
+  atualizarValorBarba() {
+    if (this.servicoBarba !== 'Nenhum') {
+      const servico = this.ConsultasBarba.find((consulta) => consulta.nome === this.servicoBarba);
+      this.valorBarba = servico.valor;
+      console.log(this.valorBarba)
+    } else {
+      this.valorBarba = 0;
+    }
+  }
+  
+  atualizarValorTintura() {
+    if (this.servicoTintura !== 'Nenhum') {
+      const servico = this.ConsultasTintura.find((consulta) => consulta.nome === this.servicoTintura);
+      this.valorTintura = servico.valor;
+      console.log(this.valorTintura)
+    } else {
+      this.valorTintura = 0;
+    }
+  }
+
+  atualizarValorDepilacao() {
+    if (this.servicoDepilacao !== 'Nenhum') {
+      const servico = this.ConsultasDepilacao.find((consulta) => consulta.nome === this.servicoDepilacao);
+      this.valorDepilacao = servico.valor;
+      console.log(this.valorDepilacao)
+    } else {
+      this.valorDepilacao = 0;
+    }
+  }
+
+  atualizarValorHidratacao() {
+    if (this.servicoHidratacao !== 'Nenhum') {
+      const servico = this.ConsultasHidratacao.find((consulta) => consulta.nome === this.servicoHidratacao);
+      this.valorHidratacao = servico.valor;
+      console.log(this.valorHidratacao)
+    } else {
+      this.valorHidratacao = 0;
+    }
+  }
+
+
+  calcularTotal() {
+    this.total = this.valorCabelo + this.valorBarba + this.valorTintura + this.valorDepilacao + this.valorHidratacao;
+    console.log(this.total)
+    }
+    
+  
   
 
   async selecionarHorario(horario: string) {
@@ -163,6 +226,13 @@ export class TelaAgendaPage implements OnInit {
     const isoDate = selectedDate.toISOString();
     const formattedDate = isoDate.slice(8, 10) + '/' + isoDate.slice(5, 7) + '/' + isoDate.slice(0, 4);
     this.dataHora = formattedDate;
+  }
+  
+  copyText() {
+    const textToCopy = document.getElementById('text-copy').textContent;
+    navigator.clipboard.writeText(textToCopy)
+      .then(() => console.log('Texto copiado com sucesso!'))
+      .catch(() => console.log('Erro ao copiar texto.'));
   }
   
  

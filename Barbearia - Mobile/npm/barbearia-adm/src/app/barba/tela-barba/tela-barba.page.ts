@@ -140,4 +140,8 @@ export class TelaBarbaPage implements OnInit {
     await alert.present();
   }
 
+  excluirConsulta(id) {  
+    this.service.deleteServicoBarba(id)
+}
+
 }

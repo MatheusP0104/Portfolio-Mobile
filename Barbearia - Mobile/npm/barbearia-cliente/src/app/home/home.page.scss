@@ -17,7 +17,11 @@
 }
 
 .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 50%;
+    flex-direction: column;
 }
 
 ion-toolbar, ion-header{

@@ -27,6 +27,7 @@
        <h5>{{consulta.descricao}}</h5>
      </ion-label>
      <ion-note slot="end">R${{consulta.valor}}</ion-note>
+     <ion-button slot="end" color="danger" (click)="excluirConsulta(consulta.id)"><ion-icon name="trash-outline"></ion-icon></ion-button>
    </ion-item>
  </div>
  <!-- Fim da tela Depilação -->

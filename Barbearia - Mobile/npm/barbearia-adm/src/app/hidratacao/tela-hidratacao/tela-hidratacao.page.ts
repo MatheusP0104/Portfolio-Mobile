@@ -135,4 +135,8 @@ export class TelaHidratacaoPage implements OnInit {
     await alert.present();
   }
 
+  excluirConsulta(id) {  
+    this.service.deleteServicoHidratacao(id)
+}
+
 }

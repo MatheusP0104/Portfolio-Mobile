@@ -96,10 +96,6 @@ const routes: Routes = [
     loadChildren: () => import('./verAgendamento/ver-agenda/ver-agenda.module').then( m => m.VerAgendaPageModule)
   },
   {
-    path: 'lista-agenda/:id',
-    loadChildren: () => import('./listagemAgenda/lista-agenda/lista-agenda.module').then( m => m.ListaAgendaPageModule)
-  },
-  {
     path: 'recuperar-senha',
     loadChildren: () => import('./recuperar-senha/recuperar-senha.module').then( m => m.RecuperarSenhaPageModule)
   },

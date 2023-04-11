@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup} from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Servicos } from 'src/app/models/servicos';
 import { CrudService } from 'src/app/services/crud.service';
+
 
 
 
@@ -15,12 +16,14 @@ import { CrudService } from 'src/app/services/crud.service';
 export class TelaCabeloPage implements OnInit {
   Consultas : Servicos[];
   editForm : FormGroup;
-  id : any;
+  id: any;
+  isExclusaoAtiva = false;
   constructor(
     private service : CrudService,
     private activateRouter : ActivatedRoute,
     private alerta: AlertController,
     private enviardados: AlertController,
+    private router: Router,
     public formBuilder : FormBuilder
   ) { 
     this.id = this.activateRouter.snapshot.paramMap.get('id')
@@ -140,4 +143,12 @@ export class TelaCabeloPage implements OnInit {
     
     await alert.present();  
   }
+
+  excluirConsulta(id) {  
+    this.isExclusaoAtiva = true;
+    this.service.deleteServicoCabelo(id)
+    this.isExclusaoAtiva = false;
 }
+
+}
+

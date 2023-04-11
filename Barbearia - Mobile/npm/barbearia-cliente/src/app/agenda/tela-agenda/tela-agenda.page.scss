@@ -167,13 +167,9 @@ ion-datetime{
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-direction: row;
     width: 120px;
     height: 60px;
-}
-
-.pix{
-    position: relative;
-    left: 90px;
 }
 
 .linhas{ 
@@ -183,9 +179,13 @@ ion-datetime{
     margin-top: 10px;
 }
 
+.pix{
+    margin-left: 100%;
+}
+
 .linhas .line{
     border: solid 1px #000;
-    width: 85vw;
+    width: 90vw;
 }
 
 .content{
@@ -201,23 +201,20 @@ ion-datetime{
 
 .content p{
     font-weight: 600;
-    position: relative;
-    left: 30px;
+    text-align: center;
 }
 
 .content h6{
     font-weight: 600;
-    position: relative;
     text-align: center;
     width: 300px;
     height: 30px;
+    margin-bottom: 30%;
 }
 
 .content h5{
     font-weight: 600;
     text-align: center;
-    position: relative;
-    bottom: 15px;
     width: 300px;
     height: 30px;
 
@@ -229,8 +226,6 @@ ion-datetime{
 }
 
 .content .finalizar{
-    position: absolute;
-    top: 73vh;
     color: #000;
     border-radius: 30px;
     border: 1px solid #000;
@@ -245,13 +240,45 @@ ion-datetime{
     background-color: #a8a8a8;
 }
 
+.content .copiar{
+    color: #000;
+    border-radius: 30px;
+    border: 1px solid #000;
+    width: 80%;
+    font-family: 'Inika';
+    font-weight: 800;
+    margin-bottom: 5%;
+}
+
+.content .copiar:hover{
+    color: #000;
+    transition: 0.5s ease;
+    background-color: #a8a8a8;
+}
+
 // ------------------------ Pagamento no local ----------------
+
+.local{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 200px;
+}
+
+.local img{
+    width: 120px;
+    height: 60px;
+}
+
+.moeda{
+    margin-left: 100%;
+}
 
 .valor{
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     width: 100vw;
-
+    margin-left: 17%;
     font-family: 'Inika';
     font-style: normal;
     font-size: 16px;
@@ -259,13 +286,6 @@ ion-datetime{
     color: #000000;
 }
 
-.texto_valorTotal{
-    font-weight: 800;
-}
-
-.texto_real{
-    font-weight: 1000;
-}
 
 .troco{
     display: flex;
@@ -284,6 +304,7 @@ ion-datetime{
     display: flex;
     justify-content: start;
     width: 100vw;
+    margin-bottom: 10%;
 
 }
 

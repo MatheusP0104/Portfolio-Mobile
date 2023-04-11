@@ -16,10 +16,6 @@ const routes: Routes = [
     loadChildren: () => import('./create-todo/create-todo.module').then( m => m.CreateTodoPageModule)
   },
   {
-    path: 'update-todo/:id',
-    loadChildren: () => import('./update-user/update-todo.module').then( m => m.UpdateTodoPageModule)
-  },
-  {
     path: 'tela-login',
     loadChildren: () => import('./login/tela-login/tela-login.module').then( m => m.TelaLoginPageModule)
   },
